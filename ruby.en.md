@@ -98,8 +98,12 @@ To keep the readability and the consistency of code, there are examples which is
 - **[SHOULD]** Use underscores to separate every four-digits to write binary and hexadecimal numbers with many digits for readability.
   - eg: `0xABCD_1234`
 - **[SHOULD]** Do not mix uppercase and lowercase letters in hexadecimal numbers in a file.
-- **[SHOULD]** Use `Integer#quo` method for writing fractional numbers.
+- **[SHOULD]** Use `r` suffix to write fractional numbers if you use ruby 2.1 or newer.
+  - eg: `1/2r #=> (1/2)`
+- **[SHOULD]** Use `Integer#quo` method for writing fractional numbers if you use ruby 2.0.0 or older.
   - eg: `1.quo(2) #=> (1/2)`
+- **[SHOULD]** Use `i` or `ri` suffix to write complex numbers if you use ruby 2.1 or newer.
+  - eg: `1 + 2i #=> (1+2i)`
 
 ## Strings
 
