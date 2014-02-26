@@ -24,9 +24,9 @@
 
 ## Introduction
 
-This document defines the regulations to write Ruby code in COOKPAD Inc.
-These regulations are formed with respect for readability and maintenability so that developers familiar to Ruby can read codes easily.
-To keep the readability and the consistency of code, there are examples which is not so bad but is denoted as "bad".
+This document defines the conventions for writing Ruby code at COOKPAD Inc.
+These regulations are formed with respect to readability and maintenability, such that developers familiar with Ruby can easily read the code.
+To ensure readability and consistency within the code, the guide presents a number of rules to follow. Some of these rules must be followed, while others are simply a recommendation for the developer.
 
 ## Ruby version
 - **[SHOULD]** Projects using Ruby 2.0 should prefer Ruby 2.0 syntax where possible: e.g. keyword arguments, symbol array literal notation(`%i`).
@@ -34,7 +34,7 @@ To keep the readability and the consistency of code, there are examples which is
 ## Indentation
 
 - **[MUST]** Use two spaces for 1-level of indent.  Do not use the horizontal tab character.
-- **[MUST]** When you want to pass a block in the last method call of a long method chain, you must instead extract the receiver of the last method call into a local variable, and write the method call with block as a separate statement on the following line.
+- **[MUST]** When you want to pass a block in the last method call of a long method chain, you must extract the receiver of the last method call into a local variable Afterwards, write the method call with block as a separate statement on the following line.
 
     ```ruby
     # good
@@ -69,13 +69,13 @@ To keep the readability and the consistency of code, there are examples which is
     other_scope(bar)
     ```
 
-## Whitespaces
+## Whitespace
 
-- **[MUST]** Do not put whitespaces at the end of line.
+- **[MUST]** Do not put whitespace at the end of a line.
 
 ## Empty lines
 
-- **[MUST]** Do not put empty lines at the end of file.
+- **[MUST]** Do not put empty lines at the end of a file.
 
 ## Magic comments
 
@@ -88,27 +88,27 @@ To keep the readability and the consistency of code, there are examples which is
 
 ## Line columns
 
-- **[SHOULD]** Keep lines fewer than 80 characters.
-- **[MUST]** Keep lines fewer than 128 characters.
+- **[SHOULD]** Keep lines shorter than 80 characters.
+- **[MUST]** Keep lines shorter than 128 characters.
 
 ## Numbers
 
-- **[SHOULD]** Use underscores to separate every three-digits to write numbers with many digits for readability.
+- **[SHOULD]** Use underscores to separate every three-digits when writing long numbers.
   - eg: `1_000_000.001_023`
-- **[SHOULD]** Use underscores to separate every four-digits to write binary and hexadecimal numbers with many digits for readability.
+- **[SHOULD]** Use underscores to separate every four-digits when writing long binary and hexadecimal numbers.
   - eg: `0xABCD_1234`
-- **[SHOULD]** Do not mix uppercase and lowercase letters in hexadecimal numbers in a file.
-- **[SHOULD]** Use `r` suffix to write fractional numbers if you use ruby 2.1 or newer.
+- **[SHOULD]** Do not mix uppercase and lowercase letters in hexadecimal numbers.
+- **[SHOULD]** Use `r` suffix to write fractional numbers, if you are using Ruby 2.1+
   - eg: `1/2r #=> (1/2)`
-- **[SHOULD]** Use `Integer#quo` method for writing fractional numbers if you use ruby 2.0.0 or older.
+- **[SHOULD]** Use `Integer#quo` method for writing fractional numbers, if you are using Ruby 2.0+
   - eg: `1.quo(2) #=> (1/2)`
-- **[SHOULD]** Use `i` or `ri` suffix to write complex numbers if you use ruby 2.1 or newer.
+- **[SHOULD]** Use `i` or `ri` suffix to write complex numbers, if you are using Ruby 2.1+
   - eg: `1 + 2i #=> (1+2i)`
 
 ## Strings
 
 - **[SHOULD]** Use `''` to write empty strings.
-- **[SHOULD]** Do not use `String.new` method with no arguments without any reasons.
+- **[SHOULD]** Do not use `String.new` method with no arguments, unless there is a valid reason.
 - **[MUST]** Use appropriate punctuation characters to minimize the number of escape sequences in string contents.
 - **[SHOULD]** Use parentheses to write strings by `%` notation.  You can use any kind of parentheses.  In the following cases you can use non-parentheses characters for punctuations.
 
@@ -117,8 +117,8 @@ To keep the readability and the consistency of code, there are examples which is
     ```
 
 - **[MUST]** Do not write only `Object#to_s` in string interpolation, such as `"#{obj.to_s}"`.
-- **[SHOULD]** (Ruby 1.9+) Use `\u` notation to write Unicode characters rather than writing each bytes in `\x`, eg. `"\u{3333}"` instead of `"\xE3\x8C\xB3"`.  If you have to write a script for both ruby 1.8 and 1.9, you may write each bytes in `\x` form.
-- **[SHOULD]** Do not write string literals in loops, where the loops are `while`, `until`, `for`, and iterators that.
+- **[SHOULD]** (Ruby 1.9+) Use `\u` notation to write Unicode characters rather than writing the bytes in `\x`, e.g. `"\u{3333}"` instead of `"\xE3\x8C\xB3"`.  If you have to write a script for both Ruby 1.8 and 1.9, you may write the bytes in `\x` form.
+- **[SHOULD]** Do not write string literals in loops (e.g. `while`, `until`, `for`).
 - **[SHOULD]** Do not use `String#+` to concatenate any string objects to string literals.  Use string interpolations.
 - **[MUST]** Do not use `+=` to append string to string in a destructive manner.  Use `String#<<` or `String#concat`.
 
@@ -126,7 +126,7 @@ To keep the readability and the consistency of code, there are examples which is
 
 - **[SHOULD]** Do not make unnecessary backref groups.  Use `(?: ... )`.
 - **[SHOULD]** Use `x` option for writing complicated regular expressions.  This option allows you to use line breaks, whitespace, and comments (`(?# ... )`) in the regular expressions to improve their readability.
-  - You can find the practical example in [uri/common.rb](https://github.com/ruby/ruby/blob/trunk/lib/uri/common.rb#L457).
+  - You can find practical exampled in [uri/common.rb](https://github.com/ruby/ruby/blob/trunk/lib/uri/common.rb#L457).
 
 ## Arrays
 
@@ -174,7 +174,7 @@ To keep the readability and the consistency of code, there are examples which is
       :baz, ]
     ```
 
-- **[SHOULD]** In the multi line array literal, put `,` after the last item.
+- **[SHOULD]** In the multi-line array literal, put `,` after the last item.
 - **[SHOULD]** Use general delimited input (percent) syntax `%w(...)` or `%W(...)` for word arrays.
 
     ```ruby
@@ -200,7 +200,7 @@ To keep the readability and the consistency of code, there are examples which is
 
 ## Hashes
 
-- **[MUST]** Put whitespaces between `{` and the first key, and between the last value and `}` when you write hash literal in multiple lines.
+- **[MUST]** Put whitespaces between `{` and the first key, and between the last value and `}` when writing hash literals over multiple lines.
 
     ```ruby
     # good
@@ -209,7 +209,7 @@ To keep the readability and the consistency of code, there are examples which is
     }
     ```
 
-- **[MUST]** Use new hash syntax in 1.9+ (`{ foo: 42 }`) if all keys can be written in that syntax:
+- **[MUST]** Use new hash syntax in Ruby 1.9+ (`{ foo: 42 }`) if all keys can be written in that syntax:
 
     ```ruby
     # good
@@ -256,7 +256,7 @@ To keep the readability and the consistency of code, there are examples which is
     }
     ```
 
-- **[MUST]** If you write a hash literal just after an assignment operator such as `=`, obey the following form denoted as "good".
+- **[MUST]** If you write a hash literal just after an assignment operator, such as `=`, obey the following form denoted as "good".
 
     ```ruby
     # good
@@ -298,15 +298,15 @@ To keep the readability and the consistency of code, there are examples which is
   { 'foo' => 1, 'bar' => 2 }
   ```
 
-- **[SHOULD]** (Ruby 1.9+) If all the keys of hash literals are Symbol literals, use the form of `{ key: value }`.  Put a whitespace after `:`.
+- **[SHOULD]** (Ruby 1.9+) If all the keys of hash literals are Symbol literals, use the form of `{ key: value }`.  Put whitespace after `:`.
 
 ## Operations
 
-- **[SHOULD]** Put whitespaces around of operators except for `**`.
+- **[SHOULD]** Put whitespace around operators, except for `**`.
 - **[MUST]** Do not use `and`, `or`, and `not`.
-  - But, you can only use `or` for the case `expression or raise 'message'`.
+  - But, you may use `or` for the special case: `expression or raise 'message'`.
 - **[MUST]** Do not nest conditional operators.
-- **[MUST]** Do not write conditional operators in multiple line.
+- **[MUST]** Do not write conditional operators over multiple lines.
 
     ```ruby
     # good
@@ -327,21 +327,21 @@ To keep the readability and the consistency of code, there are examples which is
 
 ## Assignments
 
-- **[MUST]** Parallel assignments can be used only for assigning literal values or results of methods without arguments, and exchanging two variables or attributes.
-- **[MUST]** Put whitespaces around of assignment operators.
+- **[MUST]** Parallel assignments can only be used for assigning literal values or results of methods without arguments, and for exchanging two variables or attributes.
+- **[MUST]** Put whitespace around assignment operators.
 - **[MUST]** Do not write assignment expressions in conditional claues.
 
 ## Control structures
 
-- **[SHOULD]** Use `unless condition` instead of `if !condition`.
-- **[SHOULD]** Use `until condition` instead of `while !condition`.
+- **[SHOULD]** Use `unless condition`, instead of `if !condition`.
+- **[SHOULD]** Use `until condition`, instead of `while !condition`.
 - **[SHOULD]** Do not use `else` for `unless`.
 - **[MUST]** Put a line break just after the condition clause of `if`, `unless`, and `case`.  Do not follow a body code.
 - **[MUST]** Do not use `then` and `:` for the condition clause of `if`, `unless`, and `case`.
 - **[MUST]** Put a line break just after the condition clause of `while` and `until`.  Do not follow a body code.
 - **[MUST]** Do not use `do` and `:` for the condition clause of `while` and `until`.
 - **[SHOULD]** Do not write a logical expressions combined by `||` in the condition clause of `unless` and `until`.
-- **[SHOULD]** Use modifier forms if conditions and bodies are short.
+- **[SHOULD]** Use modifier forms, if conditions and bodies are short.
 - **[SHOULD]** Extract conditions as predicator methods with appropriate names if the conditions are long or multiple line.
 - **[MUST]** If you write a control structure just after an assignment operator such as `=`, obey the following form denoted as "good".
 
@@ -368,20 +368,20 @@ To keep the readability and the consistency of code, there are examples which is
              end
     ```
 
-- **[MUST]** Dont put any expressions which don't have meaningful return values after return, next, and break.
-   - In actions of controllers, if you write method calls of declaring continuation such as redirect_to and render, you can put them after return or next.
+- **[MUST]** Do not put any meaningless expressions after return, next, or break.
+   - In the actions of controllers when writing method calls that declare continuation, such as redirect_to and render, you can put them after return or next.
 
 ## Method calls
 
 - **[MUST]** Do not omit parentheses of method calls except for the following permitted cases.
 - **[MUST]** You must omit parentheses for method calls without any arguments.
-- **[MUST]** For DSL-like methods (as in the examples below), you may omit parentheses when calling them.  But you should not omit parentheses for the case where the first argument is enclosed in parentheses because this case generates syntax warning.
+- **[MUST]** For DSL-like methods (as in the examples below), you may omit parentheses when calling them.  However, you should not omit parentheses for the case where the first argument is enclosed in parentheses, because this case generates syntax warning.
    - Global methods such as p, print, and puts.
    - Declarative methods used in definitions of classes and modules such as private and attr_reader, including them provided by frameworks like Rails.
    - Methods for declaring continuation for actions of controllers such as redirect_to and render provided by ActionController.
    - Other, DSL-like methods.
 - You may omit the parentheses of the outermost method call when nesting method calls, provided that other guidelines are not violated
-- **[MUST]** Do not put whitespaces between a method name and parenthesis.
+- **[MUST]** Do not put whitespace between a method name and parenthesis.
 
     ```ruby
     # good
@@ -391,7 +391,7 @@ To keep the readability and the consistency of code, there are examples which is
     p (1 + 2)
     ```
 
-- **[SHOULD]** Omit `{ }` of a hash literal which put on the end of arguments.
+- **[SHOULD]** Omit `{ }` of a hash literal, when put on the end of an argument list.
 
     ```ruby
     # good
@@ -430,7 +430,7 @@ To keep the readability and the consistency of code, there are examples which is
     end
     ```
 
-- **[MUST]** Use brace block of a method call wrote in one line.
+- **[MUST]** Use brace block for a method call written in one line.
 - **[MUST]** Obey the following "good" form in `do`/`end` form of blocks.
 
     ```ruby
@@ -454,7 +454,7 @@ To keep the readability and the consistency of code, there are examples which is
     ```
 
 - **[MUST]** Put a whitespace before `{` of brace blocks.
-- **[MUST]** In a brace block wrote in one line, put a whitespace between `{` or a list of block parameters and a body block, and the body block and `}`.
+- **[MUST]** For a brace block written in one line, put whitespace between `{`, `}` and the inner contents.
 
     ```ruby
     # good
@@ -480,8 +480,8 @@ To keep the readability and the consistency of code, there are examples which is
     10.times { puts 'Hello world'}
     ```
 
-- **[SHOULD]** On a method call, if a part before method parameters are long, write these arguments in mutiple lines according to the following regulations.
-  - if the arguments is long, put a line break after an open parenthesis `(`, increment the level of indent from the next line and put each argument on each line, and put a close parenthesis `)` on the independent line and decrease the level of indentation of the line.
+- **[SHOULD]** On a method call with long parameters, write these arguments over mutiple lines according to the following regulations.
+  - If the arguments are long, put a line break after an open parenthesis `(`, increment the level of indent from the next line and put each argument on a new line. Finally, put a closing parenthesis `)` on a new less indendented line.
 
       ```ruby
       Foo.new(
@@ -494,7 +494,7 @@ To keep the readability and the consistency of code, there are examples which is
       )
       ```
 
-  - If the arguments is not long, continue the first argument after an open parenthesis `(`, increment the level of indentation from the next line and put each argument on each line, and put a close parenthesis `)` just after the last argument.
+  - If the arguments are not long, continue the first argument after an open parenthesis `(`, increment the level of indentation from the next line and put each argument on a new line, and put a closing parenthesis `)` just after the last argument.
 
       ```ruby
       Foo.new(arg,
@@ -503,7 +503,7 @@ To keep the readability and the consistency of code, there are examples which is
               long_key: long_value)
       ```
 
-  - For writing a DSL-like method call in multiple lines、put the first argument just after the method name, increment the level of indentation fron the next line, and put each argument on each line.
+  - For writing a DSL-like method call in multiple lines、put the first argument just after the method name, increment the level of indentation fron the next line, and put each argument on a new line.
 
       ```ruby
       ActionMailer::Base.delivery_method :smtp,
@@ -524,7 +524,7 @@ To keep the readability and the consistency of code, there are examples which is
 
 - **[MUST]** Use `alias_method` instead of `alias` to define aliases of methods.
 - **[MUST]** use `attr_accessor`, `attr_reader`, and `attr_writer` to define accessors instead of `attr`.
-- **[MUST]** In definitions of class methods, use `self.` prefix of method name to reduce the indentation level, but it's OK to use `class << self` when you want to define both of public & private class methods.
+- **[MUST]** In definitions of class methods, use `self.` prefix of method name to reduce the indentation level. However, it is fine to use `class << self` when you want to define both public and private class methods.
 
     ```ruby
     class Foo
@@ -538,7 +538,7 @@ To keep the readability and the consistency of code, there are examples which is
     end
     ```
 
-- **[MUST]** In definitions of private or protected class methods, define these methods and change these visibilities in `class << self`/`end`.
+- **[MUST]** In definitions of private or protected class methods, define these methods and change their visibilities in `class << self`/`end`.
 
    ```ruby
     class Foo
@@ -575,7 +575,7 @@ To keep the readability and the consistency of code, there are examples which is
     end
     ```
 
-- **[MUST]** If you use `private`, `protected`, and `public` without any arguments, align lines of these method calls to method definitions, and put empty lines around of the line of these visibility-change methods.
+- **[MUST]** If you use `private`, `protected`, and `public` without any arguments, align the lines of these method calls to their associated method definition. Put empty lines around the visibility-change methods.
 
     ```ruby
     # good
@@ -625,16 +625,16 @@ To keep the readability and the consistency of code, there are examples which is
 - **[SHOULD]** Use Markdown format to write documentation comments for public interfaces of modules and/or classes.
 - **[MUST]** Do not put empty lines between documentation comments and the corresponding method definitions.
 - **[MUST]** Follow <a href="http://tomdoc.org/" target="_blank">TomDoc</a> style to write documentation comments.
-- **[MUST]** Do not give different responsibilities for a class.
+- **[MUST]** Do not give different responsibilities to a class.
 
 ## Method definitions
 
-- **[MUST]** Do not omit parentheses of parameter list on method definition except for one without any parameters.
-- **[MUST]** Do not put whitespaces between method name and the parameter list.
+- **[MUST]** On method definition, do not omit parentheses of parameter list, except for methods without parameters.
+- **[MUST]** Do not put whitespace between method name and the parameter list.
 - **[SHOULD]** Do not write codes that is not understandable without any comment.
-  - Prefer to divide a method into smaller methods which do not need comments to understand.
-  - You may write comments for supplementaly infomation such as descriptions for variables and citations for equations.
-- **[MUST]** Do not give different responsibilities for a method.
+  - Prefer to divide a method into smaller methods, which do not require comments to understand.
+  - You may write comments for additional infomation, such as describing variables or citations for equations.
+- **[MUST]** Do not give different responsibilities to a method.
 - **[MUST]** Do not destructively modify arguments (i.e. cause side-effects).
 
     ```ruby
@@ -651,12 +651,12 @@ To keep the readability and the consistency of code, there are examples which is
 
 ## Variables
 
-- **[MUST]** Do not introduce new global variables (`$foo`) for any reasons.
-- **[MUST]** Do not class variables (`@@foo`) for any reasons.  Use `class_attribute` instead.
-- **[MUST]** Name variables with valid English words without shortenning.  If a variable name gets too long, you can shorten the variable name with removing vowel except for the heading character, and selecting well-known abbreviations.  Additionally, you can use conventional variables such as `i` and `j` for loop counters.
-- **[SHOULD]** Do not give a variable for multiple use.
-- **[SHOULD]** Minimize the scope of a local variable.  Methods without any local variables are prefered.
+- **[MUST]** Do not introduce new global variables (`$foo`) for any reason.
+- **[MUST]** Do not use class variables (`@@foo`) for any reasons.  Use `class_attribute` instead.
+- **[MUST]** Name variables with valid English words without shortenning.  If a variable name gets too long, you can shorten the variable name by removing vowels, except for the first character. Alternatively, you choose well-known abbreviations.  Additionally, you can use conventional variables such as `i` and `j` for loop counters.
+- **[SHOULD]** Do not use a single variable for different purposes. 
+- **[SHOULD]** Minimize the scope of a local variable.  Methods without any local variables are preferred.
 
-## Misc. (difficult to categorize)
+## Miscellaneous
 
-- **[MUST]** Keep the side effect of destructive method to a minimum.
+- **[MUST]** Keep the side effects of destructive methods to a minimum.
