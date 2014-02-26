@@ -79,8 +79,8 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 ## Magic comments
 
-- **[SHOULD]** Do not use magic comments on Ruby 2.0+ because UTF-8 is set as the default encoding after Ruby 2.0.
-- **[MUST]** Use the following style for magic comments on Ruby 1.9+
+- **[MUST]** Do not use magic comments on Ruby 2.0+ because UTF-8 is set as the default encoding after Ruby 2.0.
+- **[MUST]** Use the following style for magic comments on Ruby 1.9.x.
 
     ```ruby
     # coding: utf-8
