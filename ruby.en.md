@@ -236,7 +236,7 @@ To ensure readability and consistency within the code, the guide presents a numb
     ```
 
 - **[MUST]** Use `{}` to write empty hashes.
-- **[MUST]** For multiline hashes, write the first item just after `{`, increment the level of indentation after the second items, put `}` on an independent line, and align the line of `{` to the head of the line of the first item.
+- **[MUST]** For multiline hashes, write the first item just after `{`, increment the level of indentation after the second items, put `}` on an independent line, and align the line of `}` to the head of the line of the first item.
 
     ```ruby
     # good
