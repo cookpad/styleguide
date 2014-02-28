@@ -207,7 +207,7 @@ UITableViewCell *originalCell = [[CKDOriginalCell alloc] initWithStyle:UITableVi
 ## 未分類
 
 - **[MUST]** Clang 3.4以降のObjective-C Literalsが使用可能なら使うこと。
- - 記述が完結になり見やすいため。
+ - 記述が簡潔になり見やすいため。
 
 http://clang.llvm.org/docs/ObjectiveCLiterals.html
 
