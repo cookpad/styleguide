@@ -200,13 +200,13 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 ## Hashes
 
-- **[MUST]** Put whitespaces between `{` and the first key, and between the last value and `}` when writing hash literals over multiple lines.
+- **[MUST]** Put whitespaces between `{` and the first key, and between the last value and `}` when writing hash literals on a single line.
 
     ```ruby
     # good
-    { hoge: 1,
-      fuga: 2,
-    }
+    { hoge: 1, fuga: 2 }
+    # bad
+    {hoge: 1, fuga: 2}
     ```
 
 - **[MUST]** Use new hash syntax in Ruby 1.9+ (`{ foo: 42 }`) if all keys can be written in that syntax:
