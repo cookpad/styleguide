@@ -503,14 +503,9 @@ To ensure readability and consistency within the code, the guide presents a numb
               long_key: long_value)
       ```
 
-  - For writing a DSL-like method call in multiple lines、put the first argument just after the method name, increment the level of indentation from the next line, and put each argument on a new line.
+  - For writing a DSL-like method call in multiple lines, put the first argument just after the method name, increment the level of indentation from the next line, and put each argument on a new line.
 
       ```ruby
-      ActionMailer::Base.delivery_method :smtp,
-          host: 'localhost',
-          port: 25
-
-      # you can write like that on 1.9+
       ActionMailer::Base.delivery_method :smtp,
           host: 'localhost',
           port: 25
