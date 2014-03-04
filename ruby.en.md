@@ -25,7 +25,7 @@
 ## Introduction
 
 This document defines the conventions for writing Ruby code at COOKPAD Inc.
-These regulations are formed with respect to readability and maintenability, such that developers familiar with Ruby can easily read the code.
+These regulations are formed with respect to readability and maintainability, such that developers familiar with Ruby can easily read the code.
 To ensure readability and consistency within the code, the guide presents a number of rules to follow. Some of these rules must be followed, while others are simply a recommendation for the developer.
 
 ## Ruby version
@@ -34,7 +34,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 ## Indentation
 
 - **[MUST]** Use two spaces for 1-level of indent.  Do not use the horizontal tab character.
-- **[MUST]** When you want to pass a block in the last method call of a long method chain, you must extract the receiver of the last method call into a local variable Afterwards, write the method call with block as a separate statement on the following line.
+- **[MUST]** When you want to pass a block in the last method call of a long method chain, you must extract the receiver of the last method call into a local variable. Afterwards, write the method call with block as a separate statement on the following line.
 
     ```ruby
     # good
@@ -329,7 +329,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 - **[MUST]** Parallel assignments can only be used for assigning literal values or results of methods without arguments, and for exchanging two variables or attributes.
 - **[MUST]** Put whitespace around assignment operators.
-- **[MUST]** Do not write assignment expressions in conditional claues.
+- **[MUST]** Do not write assignment expressions in conditional clauses.
 
 ## Control structures
 
@@ -480,8 +480,8 @@ To ensure readability and consistency within the code, the guide presents a numb
     10.times { puts 'Hello world'}
     ```
 
-- **[SHOULD]** On a method call with long parameters, write these arguments over mutiple lines according to the following regulations.
-  - If the arguments are long, put a line break after an open parenthesis `(`, increment the level of indent from the next line and put each argument on a new line. Finally, put a closing parenthesis `)` on a new less indendented line.
+- **[SHOULD]** On a method call with long parameters, write these arguments over multiple lines according to the following regulations.
+  - If the arguments are long, put a line break after an open parenthesis `(`, increment the level of indent from the next line and put each argument on a new line. Finally, put a closing parenthesis `)` on a new less indented line.
 
       ```ruby
       Foo.new(
@@ -503,7 +503,7 @@ To ensure readability and consistency within the code, the guide presents a numb
               long_key: long_value)
       ```
 
-  - For writing a DSL-like method call in multiple lines、put the first argument just after the method name, increment the level of indentation fron the next line, and put each argument on a new line.
+  - For writing a DSL-like method call in multiple lines、put the first argument just after the method name, increment the level of indentation from the next line, and put each argument on a new line.
 
       ```ruby
       ActionMailer::Base.delivery_method :smtp,
@@ -633,7 +633,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 - **[MUST]** Do not put whitespace between method name and the parameter list.
 - **[SHOULD]** Do not write codes that is not understandable without any comment.
   - Prefer to divide a method into smaller methods, which do not require comments to understand.
-  - You may write comments for additional infomation, such as describing variables or citations for equations.
+  - You may write comments for additional information, such as describing variables or citations for equations.
 - **[MUST]** Do not give different responsibilities to a method.
 - **[MUST]** Do not destructively modify arguments (i.e. cause side-effects).
 
@@ -653,7 +653,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 - **[MUST]** Do not introduce new global variables (`$foo`) for any reason.
 - **[MUST]** Do not use class variables (`@@foo`) for any reasons.  Use `class_attribute` instead.
-- **[MUST]** Name variables with valid English words without shortenning.  If a variable name gets too long, you can shorten the variable name by removing vowels, except for the first character. Alternatively, you choose well-known abbreviations.  Additionally, you can use conventional variables such as `i` and `j` for loop counters.
+- **[MUST]** Name variables with valid English words without shortening.  If a variable name gets too long, you can shorten the variable name by removing vowels, except for the first character. Alternatively, you choose well-known abbreviations.  Additionally, you can use conventional variables such as `i` and `j` for loop counters.
 - **[SHOULD]** Do not use a single variable for different purposes. 
 - **[SHOULD]** Minimize the scope of a local variable.  Methods without any local variables are preferred.
 
