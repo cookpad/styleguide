@@ -517,8 +517,8 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
 
       ```ruby
       ActionMailer::Base.delivery_method :smtp,
-          host: 'localhost',
-          port: 25
+          :host => 'localhost',
+          :port => 25
 
       # you can write like that on 1.9
       ActionMailer::Base.delivery_method :smtp,
