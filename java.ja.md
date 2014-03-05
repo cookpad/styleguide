@@ -10,13 +10,12 @@ java.ja.md
  - [改行](#new_lines)
  - [中括弧](#braces)
  - [1行の長さ](#line_columns)
- - [フィールド名](#field_names)
  - [名前に置ける頭字語（アクロニム）](#acronyms)
  - [TODOのスタイル](#todo)
  - [配列](#arrays)
 - Androidのルール
- - [プレフィックス](#prefix)
- - [リソース](#resource)
+ - [フィールド名](#field_names)
+ - [リソース](#resources)
 
 
 # Java コーディング規約
@@ -57,27 +56,27 @@ Instrument i
     = someLongExpression(that, wouldNotFit, on, one, line);
 ```
 
-<a name="#whitespace"></a>
+<a name="whitespace"></a>
 
 ### 空白
 
 - **[MUST]**行末に空白を置いてはならない。
 - **[MUST]**カンマ、セミコロン、キャスト演算子の直後には空白を置くこと。
 
-<a name="#empty_lines"></a>
+<a name="empty_lines"></a>
 
 ### 空行
 
 - **[MUST]**ファイルの末尾に空行を置いてはならない。
 
-<a name="#whitespaces"></a>
+<a name="new_lines"></a>
 
 ### 改行
 
 - **[MUST]**ファイルの末尾は空白を置いてはならない。
 - **[MUST]**行の途中で改行するときには演算子の直前で改行すること。
 
-<a name="#braces"></a>
+<a name="braces"></a>
 
 ### 中括弧
 
@@ -127,13 +126,13 @@ if (condition)
     body();
 ```
 
-<a name="#line_columns"></a>
+<a name="line_columns"></a>
 
 ### 1行の長さ
 
 - **[MUST]**どんな事情があろうとも1行の文字数が128文字を越えてはならない。
 
-<a name="#whitespaces"></a>
+<a name="acronyms"></a>
 
 ### 名前における頭字語 (アクロニム)
 
@@ -149,7 +148,7 @@ XMLHTTPRequest
 getCustomerID
 ```
 
-<a name="#todo"></a>
+<a name="todo"></a>
 
 ### TODOのスタイル
 
@@ -160,7 +159,7 @@ getCustomerID
 // TODO: Change this to use a flag instead of a constant.
 ```
 
-<a name="#arrays"></a>
+<a name="arrays"></a>
 
 ### 配列
 
@@ -179,9 +178,9 @@ int[] array[] = new int[10][10];
 
 ## Androidのルール
 
-<a name="#prefix"></a>
+<a name="field_names"></a>
 
-### プレフィックス
+### フィールド名
 
 - **[MUST]**フィールドにプレフィックスは付けないものとする。
 
@@ -204,7 +203,7 @@ public class MyClass {
 }
 ```
 
-<a name="#resource"></a>
+<a name="resources"></a>
 
 ### リソース
 
