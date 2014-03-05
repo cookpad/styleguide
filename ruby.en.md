@@ -4,7 +4,7 @@
 - [Indentation](#indentation)
 - [Whitespaces](#whitespaces)
 - [Empty lines](#empty-lines)
-- [Magic comment](#magic-comments)
+- [Magic comment](#character-encoding-and-magic-comments)
 - [Line columns](#line-columns)
 - [Numbers](#numbers)
 - [Strings](#strings)
@@ -77,10 +77,11 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 - **[MUST]** Do not put empty lines at the end of a file.
 
-## Magic comments
+## Character encoding and magic comments
 
-- **[MUST]** Do not use magic comments on Ruby 2.0+ because UTF-8 is set as the default encoding after Ruby 2.0.
-- **[MUST]** Use the following style for magic comments on Ruby 1.9.x.
+- **[MUST]** Use UTF-8 as scripts' character encoding for no particular reason.
+- **[SHOULD]** Do not use magic comments on Ruby 2.0+ and UTF-8 encoding because UTF-8 is the default encoding after Ruby 2.0.
+- **[MUST]** Use the following style for magic comments when you need.
 
     ```ruby
     # coding: utf-8

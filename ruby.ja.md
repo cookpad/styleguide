@@ -4,7 +4,7 @@
 - [インデント](#indentation)
 - [空白](#whitespaces)
 - [空行](#empty-lines)
-- [マジックコメント](#magic-comments)
+- [文字エンコーディングとマジックコメント](#character-encoding-and-magic-comments)
 - [1行の文字数](#line-columns)
 - [数値](#numbers)
 - [文字列](#strings)
@@ -84,10 +84,11 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
 
 - **[MUST]** ファイルの末尾に空行を置いてはならない。
 
-<a name="magic-comments"></a>
-## マジックコメント
-- **[MUST]** Ruby 2.0 以降は UTF-8 がデフォルトになったのでマジックコメントを書かない。
-- **[MUST]** Ruby 1.9.x では以下の形式でマジックコメントを書くこと。
+<a name="character-encoding-and-magic-comments"></a>
+## 文字エンコーディングとマジックコメント
+- **[MUST]** 特別な理由がない場合はスクリプトのエンコーディングは UTF-8 にすること。
+- **[SHOULD]** Ruby 2.0 以降は UTF-8 がデフォルトになったので、スクリプトのエンコーディングが UFT-8 の場合はマジックコメントを書かない。
+- **[MUST]** マジックコメントが必要な場合は以下の形式で書くこと。
 
     ```ruby
     # coding: utf-8
