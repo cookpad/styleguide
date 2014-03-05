@@ -99,14 +99,18 @@ class MyClass {
 // bad
 class MyClass
 {
-    int func() {
-        if (something) {
+    int func()
+    {
+        if (something)
+        {
             // ...
         }
-        else if (somethingElse) {
+        else if (somethingElse)
+        {
             // ...
         }
-        else {
+        else
+        {
             // ...
         }
     }
