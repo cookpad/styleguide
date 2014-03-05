@@ -1,5 +1,3 @@
-java.ja.md
-
 # 目次
 
 - Java全般のルール
