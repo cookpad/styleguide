@@ -407,14 +407,14 @@ To ensure readability and consistency within the code, the guide presents a numb
 
     ```ruby
     # good
-    puts [1, 2, 3].map {|i|
-      i * i
-    }
-
-    # bad
     puts [1, 2, 3].map do |i|
       i * i
     end
+
+    # bad
+    puts [1, 2, 3].map {|i|
+      i * i
+    }
 
     # good
     [1, 2, 3].map {|n|
