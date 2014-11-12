@@ -154,7 +154,7 @@ getCustomerID
 
 ### TODOのスタイル
 
-- **[MUST]**TODOにはすべて大文字のTODOにコロンを続けたものにすること。
+- **[MUST]** TODOにはすべて大文字のTODOにコロンを続けたものにすること。
 
 ```java
 // TODO: Remove this code after the UrlTable2 has been checked in.
