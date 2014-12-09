@@ -619,8 +619,8 @@ To ensure readability and consistency within the code, the guide presents a numb
     ```
 
 - **[SHOULD]** Use Markdown format to write documentation comments for public interfaces of modules and/or classes.
+- **[SHOULD]** Follow [YARD](http://yardoc.org/) style to write documentation comments.
 - **[MUST]** Do not put empty lines between documentation comments and the corresponding method definitions.
-- **[MUST]** Follow <a href="http://tomdoc.org/" target="_blank">TomDoc</a> style to write documentation comments.
 - **[MUST]** Do not give different responsibilities to a class.
 
 ## Method definitions
