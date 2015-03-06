@@ -25,7 +25,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 ## Imports
 
 - **[MUST]** Remove unused imports.
-- **[MUST]** Wildcard imports, static or otherwise, are not used.
+- **[MUST]** Don't use wildcard imports except test.
 
 ## Indentation
 
@@ -56,7 +56,7 @@ String longString = "some long text"
 
 ## Braces
 
-- **[MUST]** Braces do not go on their own line. they go on the same line as the code before them.
+- **[MUST]** Don't start line with braces. They must at the end of their previous line.
 
 ```java
 // good
@@ -93,7 +93,7 @@ class MyClass
 }
 ```
 
-- **[MUST]** Require braces around the statements for a conditional.
+- **[MUST]** Don't omit braces from conditional statements.
 
 ```java
 // good
@@ -127,7 +127,7 @@ getCustomerID
 ## TODO
 
 - **[MUST]** Use TODO comments for code that is temporary, a short-term solution, or good-enough but not perfect.
-- **[MUST]** TODOs should include the string TODO in all caps, followed by a colon
+- **[MUST]** TODOs must include the string TODO in all caps, followed by a colon
 
 ```java
 // TODO: Remove this code after the UrlTable2 has been checked in.
@@ -136,7 +136,7 @@ getCustomerID
 
 ## Arrays
 
-- **[MUST]** The square brackets form a part of the type, not the variable.
+- **[MUST]** Square brackets form a part of type, not a variable.
 
 ```java
 // good
@@ -176,4 +176,5 @@ public class MyClass {
 
 ## Resources
 
-- **[MUST]** Resource file names should be snake case.
+- **[MUST]** Resource file names and resources ids should be snake case.
+ - Although Android style forces these prefixes, we don't take it because (1) Oracle standard doesn't have these conventions, and (2) we prefer simpler one if we must chose one of things.
