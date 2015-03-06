@@ -46,6 +46,14 @@ Instrument i
 
 - **[MUST]** When a line is broken at a non-assignment operator the break comes before the symbol.
 
+```java
+Map<long parameterization> map
+        = new HashMap<ditto>();
+
+String longString = "some long text"
+        + " some more long text";
+```
+
 ## Braces
 
 - **[MUST]** Braces do not go on their own line. they go on the same line as the code before them.
