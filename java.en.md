@@ -18,7 +18,7 @@
 
 ## Introduction
 
-This document defines the conventions for writing Java code at COOKPAD Inc.
+This document defines the conventions for writing Java code at Cookpad Inc.
 These regulations are formed with respect to readability and maintainability, such that developers familiar with Java can easily read the code.
 To ensure readability and consistency within the code, the guide presents a number of rules to follow. Some of these rules must be followed, while others are simply a recommendation for the developer.
 
