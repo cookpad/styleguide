@@ -6,7 +6,6 @@
  - [Whitespaces](#whitespaces)
  - [Where to break](#where-to-break)
  - [Braces](#braces)
- - [Line columns](#line-columns)
  - [Acronyms](#acronyms)
  - [TODO](#todo)
  - [Arrays](#arrays)
@@ -105,10 +104,6 @@ if (condition) {
 if (condition)
     body();
 ```
-
-## Line columns
-
-- **[MUST]** Each line of text in your code should be at most 128 characters long.
 
 ## Acronyms
 

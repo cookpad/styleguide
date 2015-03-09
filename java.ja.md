@@ -7,7 +7,6 @@
  - [空行](#empty_lines)
  - [改行](#new_lines)
  - [中括弧](#braces)
- - [1行の長さ](#line_columns)
  - [名前に置ける頭字語（アクロニム）](#acronyms)
  - [TODOのスタイル](#todo)
  - [配列](#arrays)
@@ -127,12 +126,6 @@ if (condition) {
 if (condition)
     body();
 ```
-
-<a name="line_columns"></a>
-
-### 1行の長さ
-
-- **[MUST]**どんな事情があろうとも1行の文字数が128文字を越えてはならない。
 
 <a name="acronyms"></a>
 
