@@ -24,7 +24,7 @@
 
 ## Introduction
 
-This document defines the conventions for writing Ruby code at COOKPAD Inc.
+This document defines the conventions for writing Ruby code at Cookpad Inc.
 These regulations are formed with respect to readability and maintainability, such that developers familiar with Ruby can easily read the code.
 To ensure readability and consistency within the code, the guide presents a number of rules to follow. Some of these rules must be followed, while others are simply a recommendation for the developer.
 
@@ -650,7 +650,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 - **[MUST]** Do not introduce new global variables (`$foo`) for any reason.
 - **[MUST]** Do not use class variables (`@@foo`) for any reasons.  Use `class_attribute` instead.
 - **[MUST]** Name variables with valid English words without shortening.  If a variable name gets too long, you can shorten the variable name by removing vowels, except for the first character. Alternatively, you choose well-known abbreviations.  Additionally, you can use conventional variables such as `i` and `j` for loop counters.
-- **[SHOULD]** Do not use a single variable for different purposes. 
+- **[SHOULD]** Do not use a single variable for different purposes.
 - **[SHOULD]** Minimize the scope of a local variable.  Methods without any local variables are preferred.
 
 ## Miscellaneous
