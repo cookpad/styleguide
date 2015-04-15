@@ -5,6 +5,7 @@
 - Ruby ([Japanese](ruby.ja.md), [English](ruby.en.md))
 - Objective-C ([Japanese](objective-c.ja.md))
 - Java ([Japanese](java.ja.md), [English](java.en.md))
+- CoffeeScript ([Japanese](coffeescript.ja.md))
 
 ## Keywords
 
