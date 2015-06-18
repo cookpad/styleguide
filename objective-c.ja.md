@@ -19,7 +19,7 @@
 
 * [Apple Coding Guidelines](https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
 
-基本的には標準的なスタイルを定めている。また、Swiftへの以降を見越して、複数の選択肢があるときはSwiftに近いスタイルを採用する。なお、「正しいコードを書く」というのは前提なので、そのためのtipsなどは記載しない。
+基本的には標準的なスタイルを定めている。また、Swiftへの移行を見越して、複数の選択肢があるときはSwiftに近いスタイルを採用する。なお、「正しいコードを書く」というのは前提なので、そのためのtipsなどは記載しない。
 
 <a id="Definitions_of_modules_and_classes"></a>
 ## モジュールとクラスの定義
