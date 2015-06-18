@@ -263,3 +263,7 @@ if (x) { /* ... */ }
 if (x != nil) { /* ... */ }
 if (x == nil) { /* ... */ }
 ```
+
+- **[MUST]** `__block` 変数は原則として使用禁止
+  - 必要なケースはあるが、ほとんどの場合使わずに済むように書き直せる
+  - たとえば、`-enumerateObjectsWithOptions:usingBlock` は for-each文に書き換えられる
