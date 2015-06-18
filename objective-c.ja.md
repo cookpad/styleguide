@@ -122,7 +122,7 @@
 @end
 ```
 
-- **[MUST]** `assign` は冗長なので指定しないこと
+- **[MUST]** `assign`, `strong` は冗長なので指定しないこと
 - **[MUST]** `NSString`, `NSArray`, `NSDictionary`, `NSSet` のプロパティは `copy` を指定すること
   - 実体がimmutableなオブジェクトであればメモリ割り当てのコストは発生しないし、mutableなオブジェクトであれば安全のためにcopyすべきであるため
   - その他、必要に応じて `NSCopying` なクラスでは `copy` を指定すること
