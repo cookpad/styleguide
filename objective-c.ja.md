@@ -13,7 +13,7 @@
 
 ## はじめに
 
-本文書は、COOKPADにおけるObjective-C コードのスタイル規準を定めるものである。
+本文書は、CookpadにおけるObjective-C コードのスタイル規準を定めるものである。
 
 基本はAppleのスタイルを採用する。理由はAppleのFrameworkを多用するため、Apple Styleの.hファイルを見ることが多いためである。
 
