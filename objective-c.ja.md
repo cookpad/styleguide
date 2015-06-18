@@ -185,7 +185,7 @@ view.backgroundColor = [UIColor whiteColor];
   * プロトコルつきの `id<Protocol>` はこの限りではない
 - **[MUST]** Xcode 7以上を使っている場合はコレクション型でgenericsを使うこと
   * genericsにできない場合は設計が間違っている可能性がある
-- **[SHOULD]** `__nullable` / `__nonnull` が使える場所ではなるべく使うこと
+- **[SHOULD]** `nullable` / `nonnull` が使える場所ではなるべく使うこと
   * [Nullability and Objective-C - Swift Blog - Apple Developer](https://developer.apple.com/swift/blog/?id=25)
 
 <a id="Enum"></a>
