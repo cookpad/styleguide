@@ -1,13 +1,13 @@
 # 目次
 
-- [ARC](#ARC)
 - [モジュールとクラスの定義](#Definitions_of_modules_and_classes)
 - [メソッドの定義](#Definitions_of_methods)
 - [プロパティの定義](#Property)
 - [変数](#Variables)
+- [型](#Types)
 - [Enum] (#Enum)
 - [命名] (#Naming)
-- [未分類] (#Misc)
+- [構文] (#Misc)
 
 # Objective-C コーディング規準
 
@@ -16,26 +16,17 @@
 本文書は、COOKPADにおけるObjective-C コードのスタイル規準を定めるものである。
 
 基本はAppleのスタイルを採用する。理由はAppleのFrameworkを多用するため、Apple Styleの.hファイルを見ることが多いためである。
-https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html
 
-次いでGoogle Objective-Cスタイルガイドラインも参照する。
-http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml
+* [Apple Coding Guidelines](https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
 
-- 基本的には見やすさ、美しさ、を重視するが、パフォーマンスに影響がある場合はその限りではない。
-- 納得できる合理的な理由がある場合は、無い場合の主観的ルールは書き換えられる。
- - たとえば、インスタンス変数のprefixに _ を付けるのは美しくないという主張に対しては、propertyのsynthesizeの仕様でprefixに _ が付くことになっているため _ を付ける、という主張が採用される。
-
-<a id="ARC"></a>
-## ARC
-
-- **[MUST]** ARCで書くこと。見やすいし、ARCで書くとメモリ管理の作法が強制され、コードが統一されるため。非ARCのライブラリはなるべく使わない。
+基本的には標準的なスタイルを定めている。また、Swiftへの以降を見越して、複数の選択肢があるときはSwiftに近いスタイルを採用する。なお、「正しいコードを書く」というのは前提なので、そのためのtipsなどは記載しない。
 
 <a id="Definitions_of_modules_and_classes"></a>
 ## モジュールとクラスの定義
 
-- **[MUST]** propertyやメソッドの定義は可能な限りクラス拡張を使用する。公開する必要のないpropertyやメソッドをヘッダに定義してはいけない。
+- **[MUST]** 公開する必要のないpropertyやメソッドの定義はクラス拡張を使用して実装ファイルに記述する。ヘッダファイルには公開メソッドとプロパティのみを記述すること
 
-```
+```objc
 // Bad
 // ViewController.h
 
@@ -58,12 +49,10 @@ http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml
 @end
 ```
 
-  前者はpublic扱い。後者は（概ね）private扱い。
+- **[MUST]** protocolの適用と実装も公開の必要がなければ実装ファイルでクラス拡張により行う
+  - もちろん公開の必要があればヘッダファイルに書いてよい
 
-- **[SHOULD]** protocolの実装の宣言は基本的にクラス拡張で行う。
- - 公開しなくて良いものは極力公開しない。
-
-```
+```objc
 // Bad
 // ViewController.h
 
@@ -80,79 +69,83 @@ http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml
 @end
 ```
 
-ただ、そのprotocolの実装をしているということを公開したいというケースではもちろんヘッダーで宣言してよい。
-
 <a id="Definitions_of_methods"></a>
 ## メソッドの定義
 
-- **[SHOULD]** プライベートメソッドは宣言しない。現在のClangでは宣言なしで定義できるためコード量削減のため記述しない。
+- **[MUST]** プライベートメソッドは、 `_` prefixを付けてはいけない
 
-```
+```objc
 // Bad
-@interface Hoge ()
-- (void)_privateMethod1;
-- (void)_privateMethod1;
-@end
+- (void)_privateMethod1
+{
+  // ...
+}
 
 // Good
-@interface Hoge ()
-@end
+- (void)privateMethod1
+{
+  // ...
+}
 ```
 
 <a id="Property"></a>
 ## プロパティの定義
 
-- **[MUST]** propertyの属性としてweakを使えるところでは使う
- - SEGVの防止とインスタンス保持者の明確化のため
+- **[MUST]** propertyの属性として `nonatomic` をつけること
+  - atomicによってスレッドセーフになるのは実質的に構造体のみと考えられるため
+  - またatomicであってもそのクラス自体がスレッドセーフになるわけではない
+  - atomicをつける妥当な理由がある場合は、それをコメントに書いたうえで使うこと
+- **[MUST]** propertyの属性としてweakを使える場所では使うこと
 
-```
+```objc
 // Bad
-@property (assign) id delegate;
-@property (strong) IBOutlet UILabel *label;
+@property (nonatomic) id delegate;
+@property (nonatomic) IBOutlet UILabel *label;
 
 // Good
-@property (weak) id delegate;
-@property (weak) IBOutlet UILabel *label; //< このlabelをどこかにaddSubviewする場合
+@property (nonatomic, weak) id<FooDelegate> delegate;
+@property (nonatomic, weak) IBOutlet UILabel *label;
 ```
-
-`weak`だと参照しているインスタンスが解放されたタイミングで`nil`になるが、`assign`だとならない。
-そのため、インスタンスの参照には`weak`を使うほうが安全。
-
-また、どこかに`addSubview`する類いのものはadd先のViewがそのインスタンスを保持するため、`property`のほうでは`weak`参照にしておくことが望ましい。
 
 - **[MUST]** 代入が必要ないプロパティはreadonlyにする
  - できるだけ副作用の少ないプログラムにするため
 
-```
+```objc
 // Bad
 @interface OriginalView
-@property (weak) UILabel *label; //< 例えば、このlabelのtextは変更したいがlabel自体は変更しないケース
+@property (nonatomic, weak) UILabel *label; //< 例えば、このlabelのtextは変更したいがlabel自体は変更しないケース
 @end
 
 // Good
 @interface OriginalView
-@property (readonly) UILabel *label;
+@property (nonatomic, readonly) UILabel *label;
 @end
 ```
 
-- **[SHOULD]** @synthesizeは使用しない。現在のClangでは@synthesizeを明記する必要がなくなったためコード量削減のため記述しない。
+- **[MUST]** `assign` は冗長なので指定しないこと
+- **[MUST]** `NSString`, `NSArray`, `NSDictionary`, `NSSet` のプロパティは `copy` を指定すること
+  - 実体がimmutableなオブジェクトであればメモリ割り当てのコストは発生しないし、mutableなオブジェクトであれば安全のためにcopyすべきであるため
+  - その他、必要に応じて `NSCopying` なクラスでは `copy` を指定すること
+- **[MUST]** 原則としてインスタンス変数は宣言せず、必要なプロパティは `@property` として宣言すること
 
-- **[SHOULD]** @propertyにするのが妥当ではないインスタンス変数の宣言はクラス拡張で先頭に " _ "をつけて行うこと。
-
-```
+```objc
+// Bad
 @interface ViewController () <UITableViewDataSource>
 {
-    NSNumber *_recipeID;
+    NSString *_recipeID;
 }
 @end
+
+// Good
+@interface ViewController () <UITableViewDataSource>
+@property (nonatomic, copy) NSString *recipeID;
+@end
+
 ```
 
-よくある例として、あるViewがもっているUILabelのtextプロパティを外部から変更したいようなときがある。
-このケースだと、UILabelのプロパティは変更するものの、UILabel自体を変更しないのでUILabelはreadonlyなプロパティとして公開するほうがよい。
+- **[MUST]** プロパティへのアクセスはメソッド呼び出しではなく ドット記法を使うこと
 
-- **[SHOULD]** propertyへのアクセスはset/getメソッドではなく "." dot を使うこと。Propertyではないメソッドで "."は使わないことが望ましいが、可読性が高まるならば許容する。
-
-```
+```objc
 // Bad
 [view setBackgroundColor:[UIColor whiteColor]];
 
@@ -160,18 +153,48 @@ http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml
 view.backgroundColor = [UIColor whiteColor];
 ```
 
+* **[MUST]** プロパティの宣言などでカラムの位置は調整しなくてよい
+  * 修正時の差分を最小にするため
+
+```objc
+// Bad
+@property (nonatomic)       int       foo;
+@property (nonatomic, copy) NSString *bar;
+
+// Good
+@property (nonatomic) int foo;
+@property (nonatomic, copy) NSString *bar;
+```
+
+
 <a id="Variables"></a>
 ## 変数
 
-- **[MUST]** スコープがもっとも狭くなるように宣言すること。スコープによるバグを防ぐため。C言語古来の関数の先頭にすべての変数を宣言するスタイルは使わない。
+- **[MUST]** スコープがもっとも狭くなるように宣言すること
+- **[MUST]** 変数の再利用をしてはいけない
+  - 同じ型の変数であっても、用途が違う場合は都度用途に適した名前を付けて宣言すること
+- **[MUST]** 定数としては `extern NSString *const FOO_BAR` またはNS_ENUMを使うこと
+  - 定数としてマクロを使ってはならない
+
+<a id="Types"></a>
+## 型
+
+- **[MUST]** pointerのアスタリスクは型ではなく変数につけること
+- **[MUST]** 原則として生の `id` 型を使用してはいけない
+  * CocoaTouchの仕様上必要な場合を除き、明示的に使う必要はないはずである
+  * プロトコルつきの `id<Protocol>` はこの限りではない
+- **[MUST]** Xcode 7以上を使っている場合はコレクション型でgenericsを使うこと
+  * genericsにできない場合は設計が間違っている可能性がある
+- **[SHOULD]** `__nullable` / `__nonnull` が使える場所ではなるべく使うこと
+  * [Nullability and Objective-C - Swift Blog - Apple Developer](https://developer.apple.com/swift/blog/?id=25)
 
 <a id="Enum"></a>
 ## Enum
 
-- **[SHOULD]** enumでなくNS_ENUMを使う
+- **[MUST]** enumでなくNS_ENUMを使う
  - より安全なコードにするため。
 
-```
+```objc
 // Bad
 typedef enum {
     TypeNone = 0,
@@ -191,9 +214,9 @@ typedef NS_ENUM(char, Type) {
 ## 命名
 
 - **[MUST]** UIViewControllerを親に持つControllerはAbcViewController、その他のControllerはAbcControllerとする（Abcを任意の名称で）。
-- **[SHOULD]** その他UIKitフレームワークのUIXXXを継承する場合は、基本的にAbcXXXとする。ただしUITableViewCellなど長いクラス名で末尾の単語のみ残せば意味が通るものは例外とする。
+- **[MUST]** その他UIKitフレームワークのUIXXXを継承する場合は、基本的にAbcXXXとする。ただしUITableViewCellなど長いクラス名で末尾の単語のみ残せば意味が通るものは例外とする。
 
-```
+```objc
 // Samples
 UIView *originalView = [CKDOriginalView new];
 UIButton *originalButton = [CKDOriginalButton buttonWithType:UIButtonTypeCustom];
@@ -204,15 +227,13 @@ UITableViewCell *originalCell = [[CKDOriginalCell alloc] initWithStyle:UITableVi
 ```
 
 <a id="Misc"></a>
-## 未分類
+## 構文
 
-- **[MUST]** Clang 3.4以降のObjective-C Literalsが使用可能なら使うこと。
- - 記述が簡潔になり見やすいため。
+- **[MUST]** Objective-C Literalsを使うこと
 
 http://clang.llvm.org/docs/ObjectiveCLiterals.html
 
-
-```
+```objc
 // Bad
 NSNumber *fortyTwo = [NSNumber numberWithInt:42];
 
@@ -226,4 +247,19 @@ NSNumber *fortyTwo = @42;
 NSArray *array = @[@"one", @"two"];
 
 NSDictionary *dictionary = @{@"key" : @"value"};
+```
+
+
+- **[MUST]** `nil` の条件判定は `if (x == nil)` または `if (x != nil)` とする
+
+```objc
+// Bad
+if (nil != x) { /* ... */ }
+if (nil == x) { /* ... */ }
+if (!x) { /* ... */ }
+if (x) { /* ... */ }
+
+// Good
+if (x != nil) { /* ... */ }
+if (x == nil) { /* ... */ }
 ```
