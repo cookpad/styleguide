@@ -31,18 +31,18 @@
 // ViewController.h
 
 @interface ViewController : UIViewController
-@property (weak) IBOutlet UILabel *label;
-@property (weak) IBOutlet UIButton *button;
-@property (weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UILabel *label;
+@property (nonatomic, weak) IBOutlet UIButton *button;
+@property (nonatomic, weak) IBOutlet UITextView *textView;
 @end
 
 // Good
 // ViewController.m
 
 @interface ViewController ()
-@property (weak) IBOutlet UILabel *label;
-@property (weak) IBOutlet UIButton *button;
-@property (weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UILabel *label;
+@property (nonatomic, weak) IBOutlet UIButton *button;
+@property (nonatomic, weak) IBOutlet UITextView *textView;
 @end
 
 @implementation ViewController
