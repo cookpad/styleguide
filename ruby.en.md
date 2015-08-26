@@ -508,8 +508,8 @@ To ensure readability and consistency within the code, the guide presents a numb
 
       ```ruby
       ActionMailer::Base.delivery_method :smtp,
-          host: 'localhost',
-          port: 25
+        host: 'localhost',
+        port: 25
       ```
 
 ## BEGIN and END
