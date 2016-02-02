@@ -353,7 +353,7 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
 
 - **[SHOULD]** `if !condition` の代わりに `unless condition` と書くこと。
 - **[SHOULD]** `while !condition` の代わりに `until condition` と書くこと。
-- **[SHOULD]** `unless` に対して `else` を使ってはならない。
+- **[MUST]** `unless` に対して `else` を使ってはならない。
 - **[MUST]** `if`、`unless`、および `case` の条件式の後ろは改行すること。同じ行に本体コードを続けて書いてはならない。
 - **[MUST]** `if`、`unless`、および `case` で `then` や `:` を使用してはならない。
 - **[MUST]** `while` および `until` の条件式の後ろは改行すること。同じ行に本体コードを続けて書いてはならない。
