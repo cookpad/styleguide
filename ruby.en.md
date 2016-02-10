@@ -127,7 +127,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 - **[SHOULD]** Do not make unnecessary backref groups.  Use `(?: ... )`.
 - **[SHOULD]** Use `x` option for writing complicated regular expressions.  This option allows you to use line breaks, whitespace, and comments (`(?# ... )`) in the regular expressions to improve their readability.
-  - You can find practical exampled in [uri/common.rb](https://github.com/ruby/ruby/blob/trunk/lib/uri/common.rb#L457).
+  - You can find practical exampled in [uri/common.rb](https://github.com/ruby/ruby/blob/ruby_2_0_0/lib/uri/common.rb#L457).
 
 ## Arrays
 

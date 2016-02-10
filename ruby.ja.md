@@ -139,7 +139,7 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
 
 - **[SHOULD]** 必要のない後方参照グループを作成してはならない。`(?: ... )` を使うこと。
 - **[SHOULD]** 複雑な正規表現を記述する場合は、`x` オプションを利用し、改行、空白、コメント (`(?# ... )`) を使用して可読性を向上させること。
-  - 具体例は [uri/common.rb で定義されている正規表現](https://github.com/ruby/ruby/blob/trunk/lib/uri/common.rb#L457) が参考になる。
+  - 具体例は [uri/common.rb で定義されている正規表現](https://github.com/ruby/ruby/blob/ruby_2_0_0/lib/uri/common.rb#L457) が参考になる。
 
 <a name="arrays"></a>
 ## 配列
