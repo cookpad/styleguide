@@ -1,6 +1,6 @@
 # 目次
 
-- [モジュールとクラスの定義](#Definitions_of_modules_and_classes)
+- [クラスの定義](#Definitions_of_classes)
 - [メソッドの定義](#Definitions_of_methods)
 - [プロパティの定義](#Property)
 - [変数](#Variables)
@@ -15,16 +15,16 @@
 
 本文書は、CookpadにおけるObjective-C コードのスタイル規準を定めるものである。
 
-Appleのスタイルを基本として採用する。理由はAppleのFrameworkを多用するため、Apple スタイルのヘッダファイルを見ることが多いためである。
+Appleのスタイルを基本として採用する。理由はAppleのフレームワークを多用するため、Apple スタイルのヘッダファイルを見ることが多いためである。
 
 * [Apple Coding Guidelines](https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
 
 Cookpadにおける標準的なスタイルを定めている。また、Swiftへの移行を見越して、複数の選択肢があるときはSwiftに近いスタイルを採用する。なお、「正しいコードを書く」というのは前提なので、そのためのtipsなどは記載しない。
 
-<a id="Definitions_of_modules_and_classes"></a>
-## モジュールとクラスの定義
+<a id="Definitions_of_classes"></a>
+## クラスの定義
 
-- **[MUST]** 公開する必要のないpropertyやメソッドの定義はクラス拡張を使用して実装ファイルに記述する。ヘッダファイルには公開メソッドとプロパティのみを記述すること
+- **[MUST]** 公開する必要のないプロパティやメソッドの定義はクラス拡張を使用して実装ファイルに記述する。ヘッダファイルには公開メソッドとプロパティのみを記述すること
 
 ```objc
 // Bad
@@ -49,7 +49,7 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
 @end
 ```
 
-- **[MUST]** protocolの適用と実装も公開の必要がなければ実装ファイルでクラス拡張により行う
+- **[MUST]** プロトコルの適用と実装も公開の必要がなければ実装ファイルでクラス拡張により行う
   - もちろん公開の必要があればヘッダファイルに書いてよい
 
 ```objc
@@ -72,7 +72,7 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
 <a id="Definitions_of_methods"></a>
 ## メソッドの定義
 
-- **[MUST]** プライベートメソッドには、 `_` prefixを付けてはいけない
+- **[MUST]** プライベートメソッドには、 `_` プレフィックスを付けてはいけない
 
 ```objc
 // Bad
@@ -88,16 +88,16 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
 }
 ```
 
-- **[MUST]** オーバーライドした時に、確実に親のメソッドを呼んでほしいメソッドには `NS_REQUIRES_SUPER` をつけること
+- **[MUST]** オーバーライドした時に、確実に親クラスのメソッドを呼んでほしいメソッドには `NS_REQUIRES_SUPER` をつけること
 
 <a id="Property"></a>
 ## プロパティの定義
 
-- **[MUST]** propertyの属性として `nonatomic` をつけること
+- **[MUST]** プロパティの属性として `nonatomic` をつけること
   - atomicによってスレッドセーフになるのは実質的に構造体のみと考えられるため
   - またatomicであってもそのクラス自体がスレッドセーフになるわけではない
 - **[MUST]** `atomic` をつける妥当な理由がある場合は、それをコメントに書いたうえで使うこと
-- **[MUST]** propertyの属性として `weak` を使える場所では使うこと
+- **[MUST]** プロパティの属性として `weak` を使える場所では使うこと
 
 ```objc
 // Bad
@@ -129,7 +129,7 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
   - 実体がimmutableなオブジェクトであればメモリ割り当てのコストは発生しないし、mutableなオブジェクトであれば安全のためにcopyすべきであるため
   - その他、必要に応じて `NSCopying` プロトコルに準拠するクラスには `copy` を指定すること
 - **[MUST]** 原則としてインスタンス変数は宣言せず、必要なプロパティは `@property` として宣言すること
-  - インスタンス変数名でアクセスするのは getter、setter, イニシャライズメソッドでのみにすること
+  - インスタンス変数名でアクセスするのはゲッター、セッター、イニシャライズメソッドでのみにすること
 
 ```objc
 // Bad
@@ -186,16 +186,15 @@ view.backgroundColor = [UIColor whiteColor];
 - **[MUST]** 原則として生の `id` 型を使用してはいけない
   * CocoaTouchの仕様上必要な場合を除き、明示的に使う必要はないはずである
   * プロトコルつきの `id<Protocol>` はこの限りではない
-- **[MUST]** Xcode 7以上を使っている場合はコレクション型でgenericsを使うこと
-  * genericsにできない場合は設計が間違っている可能性がある
+- **[MUST]** Xcode 7以上を使っている場合はコレクション型でジェネリクスを使うこと
+  * ジェネリクスにできない場合は設計が間違っている可能性がある
 - **[SHOULD]** `nullable` / `nonnull` が使える場所ではなるべく使うこと
   * [Nullability and Objective-C - Swift Blog - Apple Developer](https://developer.apple.com/swift/blog/?id=25)
 
 <a id="Enum_and_Options"></a>
 ## Enum / Options
 
-- **[MUST]** enumでなくNS_ENUMを使う
- - より安全なコードにするため。
+- **[MUST]** enumでなく`NS_ENUM`を使う
 
 ```objc
 // Bad
@@ -213,7 +212,7 @@ typedef NS_ENUM(char, Type) {
 
 後者だと`Type`型として定義できる数値を限定できる。例えば、誤って`TypeNG = 0xFF`とかを加えてしまったときにコンパイルエラーを出してくれる。
 
-- **[MUST]** ビットフラグを定義する場合は、NS_OPTIONSを使う
+- **[MUST]** ビットフラグを定義する場合は、`NS_OPTIONS`を使う
 
 <a id="Naming"></a>
 ## 命名
@@ -236,7 +235,7 @@ UITableViewCell *originalCell = [[CKDOriginalCell alloc] initWithStyle:UITableVi
 
 - **[MUST]** Objective-C Literalsを使うこと
 
-http://clang.llvm.org/docs/ObjectiveCLiterals.html
+[Objective-C Literals](http://clang.llvm.org/docs/ObjectiveCLiterals.html)
 
 ```objc
 // Bad
