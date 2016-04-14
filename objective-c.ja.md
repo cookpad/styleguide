@@ -15,11 +15,11 @@
 
 本文書は、CookpadにおけるObjective-C コードのスタイル規準を定めるものである。
 
-基本はAppleのスタイルを採用する。理由はAppleのFrameworkを多用するため、Apple Styleの.hファイルを見ることが多いためである。
+Appleのスタイルを基本として採用する。理由はAppleのFrameworkを多用するため、Apple スタイルのヘッダファイルを見ることが多いためである。
 
 * [Apple Coding Guidelines](https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
 
-基本的には標準的なスタイルを定めている。また、Swiftへの移行を見越して、複数の選択肢があるときはSwiftに近いスタイルを採用する。なお、「正しいコードを書く」というのは前提なので、そのためのtipsなどは記載しない。
+Cookpadにおける標準的なスタイルを定めている。また、Swiftへの移行を見越して、複数の選択肢があるときはSwiftに近いスタイルを採用する。なお、「正しいコードを書く」というのは前提なので、そのためのtipsなどは記載しない。
 
 <a id="Definitions_of_modules_and_classes"></a>
 ## モジュールとクラスの定義
@@ -72,7 +72,7 @@
 <a id="Definitions_of_methods"></a>
 ## メソッドの定義
 
-- **[MUST]** プライベートメソッドは、 `_` prefixを付けてはいけない
+- **[MUST]** プライベートメソッドには、 `_` prefixを付けてはいけない
 
 ```objc
 // Bad
@@ -94,8 +94,8 @@
 - **[MUST]** propertyの属性として `nonatomic` をつけること
   - atomicによってスレッドセーフになるのは実質的に構造体のみと考えられるため
   - またatomicであってもそのクラス自体がスレッドセーフになるわけではない
-  - atomicをつける妥当な理由がある場合は、それをコメントに書いたうえで使うこと
-- **[MUST]** propertyの属性としてweakを使える場所では使うこと
+- **[MUST]** `atomic` をつける妥当な理由がある場合は、それをコメントに書いたうえで使うこと
+- **[MUST]** propertyの属性として `weak` を使える場所では使うこと
 
 ```objc
 // Bad
@@ -125,8 +125,9 @@
 - **[MUST]** `assign`, `strong` は冗長なので指定しないこと
 - **[MUST]** `NSString`, `NSArray`, `NSDictionary`, `NSSet` のプロパティは `copy` を指定すること
   - 実体がimmutableなオブジェクトであればメモリ割り当てのコストは発生しないし、mutableなオブジェクトであれば安全のためにcopyすべきであるため
-  - その他、必要に応じて `NSCopying` なクラスでは `copy` を指定すること
+  - その他、必要に応じて `NSCopying` プロトコルに準拠するクラスには `copy` を指定すること
 - **[MUST]** 原則としてインスタンス変数は宣言せず、必要なプロパティは `@property` として宣言すること
+  - インスタンス変数名でアクセスするのは getter、setter, イニシャライズメソッドでのみにすること
 
 ```objc
 // Bad
@@ -158,11 +159,11 @@ view.backgroundColor = [UIColor whiteColor];
 
 ```objc
 // Bad
-@property (nonatomic)       int       foo;
-@property (nonatomic, copy) NSString *bar;
+@property (nonatomic)       NSInteger foo;
+@property (nonatomic, copy) NSString  *bar;
 
 // Good
-@property (nonatomic) int foo;
+@property (nonatomic) NSInteger foo;
 @property (nonatomic, copy) NSString *bar;
 ```
 
@@ -173,13 +174,13 @@ view.backgroundColor = [UIColor whiteColor];
 - **[MUST]** スコープがもっとも狭くなるように宣言すること
 - **[MUST]** 変数の再利用をしてはいけない
   - 同じ型の変数であっても、用途が違う場合は都度用途に適した名前を付けて宣言すること
-- **[MUST]** 定数としては `extern NSString *const FOO_BAR` またはNS_ENUMを使うこと
+- **[MUST]** 定数としては `extern NSString *const FOO_BAR` または `NS_ENUM` を使うこと
   - 定数としてマクロを使ってはならない
 
 <a id="Types"></a>
 ## 型
 
-- **[MUST]** pointerのアスタリスクは型ではなく変数につけること
+- **[MUST]** ポインタのアスタリスクは型ではなく変数につけること
 - **[MUST]** 原則として生の `id` 型を使用してはいけない
   * CocoaTouchの仕様上必要な場合を除き、明示的に使う必要はないはずである
   * プロトコルつきの `id<Protocol>` はこの限りではない
@@ -235,14 +236,14 @@ http://clang.llvm.org/docs/ObjectiveCLiterals.html
 
 ```objc
 // Bad
-NSNumber *fortyTwo = [NSNumber numberWithInt:42];
+NSNumber *answer = [NSNumber numberWithInt:42];
 
 NSArray *array = [NSArray arrayWithObjects:@"one", @"two", nil];
 
-NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Key", @"Value", nil];
+NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"value", @"key", nil];
 
 // Good
-NSNumber *fortyTwo = @42;
+NSNumber *answer = @42;
 
 NSArray *array = @[@"one", @"two"];
 
@@ -266,4 +267,4 @@ if (x == nil) { /* ... */ }
 
 - **[MUST]** `__block` 変数は原則として使用禁止
   - 必要なケースはあるが、ほとんどの場合使わずに済むように書き直せる
-  - たとえば、`-enumerateObjectsWithOptions:usingBlock` は for-each文に書き換えられる
+  - たとえば、`- enumerateObjectsUsingBlock:` は for-each文に書き換えられる
