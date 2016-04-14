@@ -5,7 +5,7 @@
 - [プロパティの定義](#Property)
 - [変数](#Variables)
 - [型](#Types)
-- [Enum] (#Enum)
+- [Enum / Options] (#Enum_and_Options)
 - [命名] (#Naming)
 - [構文] (#Misc)
 
@@ -87,6 +87,8 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
   // ...
 }
 ```
+
+- **[MUST]** オーバーライドした時に、確実に親のメソッドを呼んでほしいメソッドには `NS_REQUIRES_SUPER` をつけること
 
 <a id="Property"></a>
 ## プロパティの定義
@@ -189,8 +191,8 @@ view.backgroundColor = [UIColor whiteColor];
 - **[SHOULD]** `nullable` / `nonnull` が使える場所ではなるべく使うこと
   * [Nullability and Objective-C - Swift Blog - Apple Developer](https://developer.apple.com/swift/blog/?id=25)
 
-<a id="Enum"></a>
-## Enum
+<a id="Enum_and_Options"></a>
+## Enum / Options
 
 - **[MUST]** enumでなくNS_ENUMを使う
  - より安全なコードにするため。
@@ -210,6 +212,8 @@ typedef NS_ENUM(char, Type) {
 ```
 
 後者だと`Type`型として定義できる数値を限定できる。例えば、誤って`TypeNG = 0xFF`とかを加えてしまったときにコンパイルエラーを出してくれる。
+
+- **[MUST]** ビットフラグを定義する場合は、NS_OPTIONSを使う
 
 <a id="Naming"></a>
 ## 命名
