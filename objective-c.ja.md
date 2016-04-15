@@ -115,7 +115,7 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
 ```objc
 // Bad
 @interface OriginalView
-@property (nonatomic, weak) UILabel *label; //< 例えば、このlabelのtextは変更したいがlabel自体は変更しないケース
+@property (nonatomic, weak) UILabel *label; // 例えば、このlabelのtextは変更したいがlabel自体は変更しないケース
 @end
 
 // Good
@@ -146,7 +146,7 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
 
 ```
 
-- **[MUST]** プロパティへのアクセスはメソッド呼び出しではなく ドット記法を使うこと
+- **[MUST]** プロパティへのアクセスはメソッド呼び出しではなくドット記法を使うこと
 
 ```objc
 // Bad
@@ -176,7 +176,7 @@ view.backgroundColor = [UIColor whiteColor];
 - **[MUST]** スコープがもっとも狭くなるように宣言すること
 - **[MUST]** 変数の再利用をしてはいけない
   - 同じ型の変数であっても、用途が違う場合は都度用途に適した名前を付けて宣言すること
-- **[MUST]** 定数としては `extern NSString *const FOO_BAR` または `NS_ENUM` を使うこと
+- **[MUST]** 定数としては `extern NSString *const FooBar` または `NS_ENUM` を使うこと
   - 定数としてマクロを使ってはならない
 
 <a id="Types"></a>
@@ -186,7 +186,8 @@ view.backgroundColor = [UIColor whiteColor];
 - **[MUST]** 原則として生の `id` 型を使用してはいけない
   * CocoaTouchの仕様上必要な場合を除き、明示的に使う必要はないはずである
   * プロトコルつきの `id<Protocol>` はこの限りではない
-- **[MUST]** Xcode 7以上を使っている場合はコレクション型でジェネリクスを使うこと
+- **[MUST]** コレクション型にはジェネリクスを使い要素の型を指定すること
+  * 例えば `NSArray<NSString *> *` などのように宣言する
   * ジェネリクスにできない場合は設計が間違っている可能性がある
 - **[SHOULD]** `nullable` / `nonnull` が使える場所ではなるべく使うこと
   * [Nullability and Objective-C - Swift Blog - Apple Developer](https://developer.apple.com/swift/blog/?id=25)
@@ -217,8 +218,8 @@ typedef NS_ENUM(char, Type) {
 <a id="Naming"></a>
 ## 命名
 
-- **[MUST]** UIViewControllerを親に持つControllerはAbcViewController、その他のControllerはAbcControllerとする（Abcを任意の名称で）。
-- **[MUST]** その他UIKitフレームワークのUIXXXを継承する場合は、基本的にAbcXXXとする。ただしUITableViewCellなど長いクラス名で末尾の単語のみ残せば意味が通るものは例外とする。
+- **[MUST]** UIViewControllerを親に持つControllerはYYYAbcViewController、その他のControllerはYYYAbcControllerとする（YYYAbcを任意の名称で）。
+- **[MUST]** その他UIKitフレームワークのUIXXXを継承する場合は、基本的にYYYAbcXXXとする。ただしUITableViewCellなど長いクラス名で末尾の単語のみ残せば意味が通るものは例外とする。
 
 ```objc
 // Samples
