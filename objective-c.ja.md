@@ -109,7 +109,7 @@ Cookpadにおける標準的なスタイルを定めている。また、Swift�
 @property (nonatomic, weak) IBOutlet UILabel *label;
 ```
 
-- **[MUST]** 代入が必要ないプロパティはreadonlyにする
+- **[MUST]** 代入が必要ないプロパティはreadonlyにすること
  - できるだけ副作用の少ないプログラムにするため
 
 ```objc
@@ -184,13 +184,33 @@ view.backgroundColor = [UIColor whiteColor];
 
 - **[MUST]** ポインタのアスタリスクは型ではなく変数につけること
 - **[MUST]** 原則として生の `id` 型を使用してはいけない
-  * CocoaTouchの仕様上必要な場合を除き、明示的に使う必要はないはずである
-  * プロトコルつきの `id<Protocol>` はこの限りではない
+  - CocoaTouchの仕様上必要な場合を除き、明示的に使う必要はないはずである
+  - プロトコルつきの `id<Protocol>` はこの限りではない
+  - 基底クラスが同一の様々なクラスとなりうる型を表現する際は `__kindof` キーワードをつけること
 - **[MUST]** コレクション型にはジェネリクスを使い要素の型を指定すること
-  * 例えば `NSArray<NSString *> *` などのように宣言する
-  * ジェネリクスにできない場合は設計が間違っている可能性がある
+  - 例えば `NSArray<NSString *> *` などのように宣言する
+  - ジェネリクスにできない場合は設計が間違っている可能性がある
 - **[SHOULD]** `nullable` / `nonnull` が使える場所ではなるべく使うこと
-  * [Nullability and Objective-C - Swift Blog - Apple Developer](https://developer.apple.com/swift/blog/?id=25)
+  - [Nullability and Objective-C - Swift Blog - Apple Developer](https://developer.apple.com/swift/blog/?id=25)
+- **[SHOULD]** 可能な場合は `NS_ASSUME_NONNULL_BEGIN` / `NS_ASSUME_NONNULL_END` マクロを使い、 `nonnull` は明示しないこと
+
+```objc
+// Bad
+@interface SomeClass
+@property (nonatomic, nullable, copy) NSString *nullableString;
+@property (nonatomic, nonnull, copy) NSString *nonnullString;
+@end
+
+// Good
+NS_ASSUME_NONNULL_BEGIN
+
+@interface SomeClass
+@property (nonatomic, nullable, copy) NSString *nullableString;
+@property (nonatomic, copy) NSString *nonnullString;
+@end
+
+NS_ASSUME_NONNULL_END
+```
 
 <a id="Enum_and_Options"></a>
 ## Enum / Options
