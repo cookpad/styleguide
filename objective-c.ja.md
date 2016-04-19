@@ -254,6 +254,21 @@ UITextField *originalTextField = [CKDOriginalTextField new];
 UITableViewCell *originalCell = [[CKDOriginalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXX"];
 ```
 
+- **[MUST]** UIKit や各種ライブラリなどのプロジェクト外で定義されているクラスに対してカテゴリでメソッドを追加する場合は、メソッド名にベンダープレフィックスをつけること
+
+```objc
+// Bad
+@interface UIImageView (CKDRecipeThumbnailUtil)
+- (void)setRecipeThumbnailImageWithURL:(NSURL *)url;
+@end
+
+// Good
+@interface UIImageView (CKDRecipeThumbnailUtil)
+- (void)ckd_setRecipeThumbnailImageWithURL:(NSURL *)url;
+@end
+```
+
+
 <a id="Misc"></a>
 ## 構文
 
