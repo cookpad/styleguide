@@ -131,22 +131,6 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 ## Arrays
 
-- **[MUST]** If you write an array in multiple lines, insert a white space between `[` and the first item, and align the head of each item.
-
-    ```ruby
-    # good
-    [ :foo,
-      :bar,
-      :baz
-    ]
-
-    # bad
-    [:foo,
-      :bar,
-      :baz
-    ]
-    ```
-
 - **[MUST]** If you write an array literal just after an assignment operator such as `=`, obey the following form denoted as "good".
 
     ```ruby
@@ -237,25 +221,6 @@ To ensure readability and consistency within the code, the guide presents a numb
     ```
 
 - **[MUST]** Use `{}` to write empty hashes.
-- **[MUST]** For multiline hashes, write the first item just after `{`, increment the level of indentation after the second items, put `}` on an independent line, and align the line of `}` to the head of the line of the first item.
-
-    ```ruby
-    # good
-    { first: 42,
-      second: 'foo',
-    }
-
-    # bad
-    {
-      first: 42,
-      second: 'foo',
-    }
-
-    # bad
-    { first: 42,
-    second: 'foo',
-    }
-    ```
 
 - **[MUST]** If you write a hash literal just after an assignment operator, such as `=`, obey the following form denoted as "good".
 
