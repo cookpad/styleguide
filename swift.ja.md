@@ -38,39 +38,27 @@ if a == 0 {
 ```
 
 - **[MUST]** 行末に`;`を付けてはならない
-- **[SHOULD]** Xcodeの自動インデントやclang-formatに従うこと
+- **[SHOULD]** Xcodeの自動インデントに従うこと
 - **[SHOULD]** 配列、辞書を複数行で定義する場合、最後の要素にも`,`を付けること
     - 修正時の差分を最小にするため
 
 ```swift
 // Bad
 let ingredients = [
-    "bacon" : "100g",
-    "lettuce" : "1/4",
-    "tomato" : "half"
+    "bacon": "100g",
+    "lettuce": "1/4",
+    "tomato": "half"
 ]
 
 // Good
 let ingredients = [
-    "bacon" : "100g",
-    "lettuce" : "1/4",
-    "tomato" : "half",
+    "bacon": "100g",
+    "lettuce": "1/4",
+    "tomato": "half",
 ]
 ```
 
 ## クラス・構造体
-
-- **[MUST]** クラス定義の先頭にアクセスレベルを明示すること
-
-```swift
-// Bad
-class ViewController: UIViewController {
-}
-
-// Good
-public class ViewController: UIViewController {
-}
-```
 
 - **[SHOULD]** 必要が無い限り`NSObject`を継承しないこと
 - **[SHOULD]** 利用可能な限り構造体を使うこと
@@ -106,14 +94,14 @@ func update() {
 }
 ```
 
-- **[SHOULD]** Trailing Closureを利用すること
+- **[SHOULD]** クロージャーが1つだけの場合、Trailing Closureを利用すること
 
 ```swift
 // Bad
 client.fetchRecipes(withKeyword: "Sushi", completion: { recipes in
 })
 
-// Bad
+// Good
 client.fetchRecipes(withKeyword: "Sushi") { recipes in
 }
 ```
@@ -141,7 +129,9 @@ var foodCount: Int {
 }
 
 // Good
-var foodCount: Int { return foods.count }
+var foodCount: Int { 
+    return foods.count 
+}
 ```
 
 - **[SHOULD]** 副作用を伴う場合、`willSet`, `didSet`に記述すること
@@ -161,19 +151,19 @@ var foodCount: Int { return foods.count }
 
 ```swift
 // Bad
-let seasonings: Array<String> = ["suger", "salt", "vinegar", "soy sause", "miso"]
+let seasonings: Array<String> = ["suger", "salt", "vinegar", "soy sauce", "miso"]
 let ingredients: Dictionary<String, String> = [
-    "bacon" : "100g",
-    "lettuce" : "1/4",
-    "tomato" : "half",
+    "bacon": "100g",
+    "lettuce": "1/4",
+    "tomato": "half",
 ]
 
 // Good
-let seasonings: [String] = ["suger", "salt", "vinegar", "soy sause", "miso"]
+let seasonings: [String] = ["suger", "salt", "vinegar", "soy sauce", "miso"]
 let ingredients: [String: String] = [
-    "bacon" : "100g",
-    "lettuce" : "1/4",
-    "tomato" : "half",
+    "bacon": "100g",
+    "lettuce": "1/4",
+    "tomato": "half",
 ]
 ```
 
@@ -246,7 +236,7 @@ guard let recipes = client.recipes(withKeyword: "寿司") else {
 
 ## 命名
 
-- **[MUST]** [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines://swift.org/documentation/api-design-guidelines/)に従うこと
+- **[MUST]** [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines)に従うこと
 - **[MUST]** ベンダープレフィックスを付与してはならない
     - Objective-Cからも利用可能にする場合、`@objc`を用いてベンダープレフィックスを付けた命名をObjective-C向けにのみ公開すること
 - **[MUST]** 定数の命名も変数に従うこと。PascalCase、SNAKE_CASEを用いたり、`k`プレフィックスやベンダープレフィックスを付与してはならない
@@ -254,6 +244,15 @@ guard let recipes = client.recipes(withKeyword: "寿司") else {
 - **[MUST]** 利用しない戻り値、引数は`_`にすること
 
 ## 構文
+
+- **[MUST]** 浮動小数点型である場合、整数値であっても小数点以下を明示する
+
+```swift
+// Bad
+let borderRadius: CGFloat = 1
+// Good
+let borderRadius: CGFloat = 1.0
+```
 
 - **[SHOULD]** 必要の無い明示的な`self`参照は避けること
 
@@ -272,8 +271,8 @@ public class Pantry {
 
 ```swift
 // Bad
-var ingredients: Food = []
-for let food in pantry.foods {
+var ingredients: [Food] = []
+for food in pantry.foods {
     if food.isVegetable {
         ingredients.addFood(food)
     }
@@ -293,17 +292,17 @@ let ingredients = pantry.foods.filter { $0.isVegetable }
 
 ```swift
 // Bad
-let rect = CGRectMake(10, 20, 30, 40)
+let rect = CGRectMake(10.0, 20.0, 30.0, 40.0)
 
 // Good
-let rect = CGRect(x: 10, y: 20, width: 30, height: 40)
+let rect = CGRect(x: 10.0, y: 20.0, width: 30.0, height: 40.0)
 ```
 
 - **[SHOULD]** 関数ではなくプロパティ、メソッドを使うこと
 
 ```swift
-// Good
-let width = CGRectGetWidth(rect)
 // Bad
+let width = CGRectGetWidth(rect)
+// Good
 let width = rect.size.width
 ```
