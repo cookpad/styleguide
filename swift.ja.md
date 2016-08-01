@@ -69,7 +69,7 @@ if a == 0 {
 
 ## クラス・構造体
 
-- **[MUST]** Objevtive-Cからの参照が必要な場合を除き`NSObject`を継承しないこと
+- **[MUST]** Objective-Cからの参照が必要な場合を除き`NSObject`を継承しないこと
 - **[SHOULD]** `mutating`な構造体は利用を避けること
     - 一般的に構造体は不変であることが期待されるため
 
@@ -115,7 +115,7 @@ client.fetchRecipes(withKeyword: "Sushi") { recipes in
 - **[MUST]** 公開する必要が無いプロパティには`private`を明示すること
 - **[MUST]** 外部から読み込めるが、書き込ませたくないプロパティには`private(set)`を明示すること
 - **[MUST]** プロパティの属性として`weak`を使える場所では使うこと
-    - `@IBOutletやデリゲートなど、循環参照が発生しうるヶ所に付与すること
+    - `@IBOutlet`やデリゲートなど、循環参照が発生しうる箇所に付与すること
 
 ```swift
 // Bad
@@ -170,8 +170,8 @@ let ingredients: [String: String] = [
 ```
 
 - **[SHOULD]** コールバックなど、複雑なブロック型を扱う場合には`typealias`を使うこと
-- **[MUST]** `NSString`型を使用しないこと
-- **[MUST]** `UInt`型を使用しないこと
+- **[SHOULD]** `NSString`型を使用しないこと
+- **[SHOULD]** `UInt`型を使用しないこと
 
 ```swift
 // Good
@@ -180,7 +180,7 @@ typealias RecipeClientComplationBlock = (Result<[Recipe], APIError>) -> Void
 
 ## Enum
 
-- **[MUST]** 値はPascalCaseで命名すること。ただしSwift3から命名規則が変わることに留意すること
+- **[MUST]** 値はPascalCaseで命名すること。ただしSwift 3から命名規則が変わることに留意すること
 - **[SHOULD]** enumを定義するとき、通常は`case`をまとめて記述すること。ただし、値を与える場合や可読性を損なう場合はこの限りではない
 
 ```swift
@@ -209,7 +209,7 @@ user.status = .Guest
 
 ## オプショナル
 
-- **[MUST]** 非オプショナル型を利用できる場合は可能な限りそちらを使うこと
+- **[MUST]** 非オプショナル型を利用できる場合はそちらを使うこと
 - **[SHOULD]** オプショナル・バインディングが必要で`guard`の方が可読性が優れる場合はそちらを使うこと
 
 ```swift
@@ -228,7 +228,7 @@ guard let recipes = client.recipes(withKeyword: "寿司") else {
 // ...
 ```
 
-- **[SHOULD]** 暗黙的アンラップ型(Implicitly unwrapped optional)の使用は避けること
+- **[SHOULD]** 暗黙的アンラップ型(implicitly unwrapped optional)の使用は避けること
     - 可能な限りオプショナル・バインディングを利用する
 
 ## 例外
@@ -241,7 +241,7 @@ guard let recipes = client.recipes(withKeyword: "寿司") else {
 - **[MUST]** [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines)に従うこと
 - **[MUST]** 利用しない戻り値、引数は`_`にすること
 - **[MUST]** ベンダープレフィックスを付与しないこと
-    - Objective-Cからも利用可能にする場合、`@objc`を用いてベンダープレフィックスを付けた命名をObjective-C向けにのみ公開すること
+    - ただし、`NSObject`の継承や既存クラスのextensionなどを用いてObjective-Cからも利用可能になる場合は付けること
 - **[MUST]** 定数の命名も変数に従うこと
     - PascalCase、SNAKE_CASEを用いたり、`k`プレフィックスやベンダープレフィックスを付与してはならない
 - **[MUST]** 非ASCII文字を命名に使用しないこと
@@ -272,7 +272,7 @@ public class Pantry {
 
 - **[MUST]** 将来的に廃止が予定されている構文を使わないこと
     - インクリメント、デクリメント
-    -  C-style for loop
+    - C-style for loop
 
 ## Cocoa
 
@@ -303,6 +303,6 @@ let url = NSURL(fileURLWithPath: "/foo/bar")
 let width = CGRectGetWidth(rect)
 
 // Good
-let width = rect.size.width
+let width = rect.width
 ```
 
