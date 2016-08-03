@@ -180,7 +180,7 @@ typealias RecipeClientComplationBlock = (Result<[Recipe], APIError>) -> Void
 
 ## Enum
 
-- **[MUST]** 値はPascalCaseで命名すること。ただしSwift 3から命名規則が変わることに留意すること
+- **[MUST]** 値はlowerCamelCaseで命名すること。ただしSwift 3から命名規則が変わることに留意すること
 - **[SHOULD]** enumを定義するとき、通常は`case`をまとめて記述すること。ただし、値を与える場合や可読性を損なう場合はこの限りではない
 
 ```swift
@@ -193,7 +193,7 @@ enum UserStatus {
 
 // Good
 enum UserStatus {
-    case Guest, LoggedIn, Premium
+    case guest, loggedIn, premium
 }
 ```
 
@@ -271,8 +271,12 @@ public class Pantry {
 ```
 
 - **[MUST]** 将来的に廃止が予定されている構文を使わないこと
-    - インクリメント、デクリメント
-    - C-style for loop
+    - 例えば以下のようなものである
+        - インクリメント、デクリメント
+        - C-style for loop
+        - `Selector`
+        - 引数の`var`キーワード
+
 
 ## Cocoa
 
