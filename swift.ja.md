@@ -88,6 +88,8 @@ func update() {
 }
 ```
 
+## クロージャー
+
 - **[MUST]** クロージャーが1つだけの場合、Trailing Closureを利用すること
 
 ```swift
@@ -100,7 +102,35 @@ client.fetchRecipes(withKeyword: "Sushi") { recipes in
 }
 ```
 
+- **[MUST]** クロージャーの定義が1行だけの場合はshorthand argumentを利用すること。逆に複数行にわたる場合は利用を避けること
+
+```swift
+// Bad
+let titles = recipe.map { recipe in recipe.title }
+
+// Good
+let titles = recipe.map { $0.title }
+```
+
+```swift
+// Bad
+recipeManager.fetchRecipes(keyword: "Sushi") {
+    if $1 != nil {
+        self.recipes = $0
+    }
+}
+
+// Good
+recipeManager.fetchRecipes(keyword: "Sushi") { recipes, error in
+    if error != nil {
+        self.recipes = recipes
+    }
+}
+```
+
 - **[MUST]** 引数としてブロックを受け取るとき、そのブロックの生存期間がメソッドの生存期間よりも短い場合、`@noescape`を使うこと
+- **[MUST]** `unowned`による変数キャプチャは避け、`weak`を使うこと
+    - 適切に使用した場合はパフォーマンス改善に繋がるが、判断が難しくリスクを伴うため
 
 ## プロパティ、変数
 
@@ -116,6 +146,8 @@ client.fetchRecipes(withKeyword: "Sushi") { recipes in
 - **[MUST]** 外部から読み込めるが、書き込ませたくないプロパティには`private(set)`を明示すること
 - **[MUST]** プロパティの属性として`weak`を使える場所では使うこと
     - `@IBOutlet`やデリゲートなど、循環参照が発生しうる箇所に付与すること
+- **[MUST]** プロパティの属性として`unowned`の使用は避けること
+    - 適切に使用した場合はパフォーマンス改善に繋がるが、判断が難しくリスクを伴うため
 
 ```swift
 // Bad
@@ -180,7 +212,7 @@ typealias RecipeClientComplationBlock = (Result<[Recipe], APIError>) -> Void
 
 ## Enum
 
-- **[MUST]** 値はlowerCamelCaseで命名すること。ただしSwift 3から命名規則が変わることに留意すること
+- **[MUST]** 値はUpperCamelCaseで命名すること。ただしSwift 3から命名規則が変わることに留意すること
 - **[SHOULD]** enumを定義するとき、通常は`case`をまとめて記述すること。ただし、値を与える場合や可読性を損なう場合はこの限りではない
 
 ```swift
@@ -193,7 +225,7 @@ enum UserStatus {
 
 // Good
 enum UserStatus {
-    case guest, loggedIn, premium
+    case Guest, LoggedIn, Premium
 }
 ```
 
@@ -238,13 +270,32 @@ guard let recipes = client.recipes(withKeyword: "寿司") else {
 
 ## 命名
 
-- **[MUST]** [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines)に従うこと
 - **[MUST]** 利用しない戻り値、引数は`_`にすること
 - **[MUST]** ベンダープレフィックスを付与しないこと
     - ただし、`NSObject`の継承や既存クラスのextensionなどを用いてObjective-Cからも利用可能になる場合は付けること
 - **[MUST]** 定数の命名も変数に従うこと
-    - PascalCase、SNAKE_CASEを用いたり、`k`プレフィックスやベンダープレフィックスを付与してはならない
+    - UpperCamelCase、SNAKE_CASEを用いたり、`k`プレフィックスやベンダープレフィックスを付与してはならない
 - **[MUST]** 非ASCII文字を命名に使用しないこと
+- **[SHOULD]** 階層構造を示す命名は避け、ネストで表現すること
+
+```swift
+// Bad
+enum RecipeType {
+    case None
+}
+
+class Recipe {
+}
+
+// Good
+class Recipe {
+    enum Type {
+        case None
+    }
+}
+
+```
+
 
 ## 構文
 
