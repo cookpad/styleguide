@@ -53,7 +53,7 @@ let ingredients = [
 ]
 ```
 
-- **[MUST]** 制御構文に`()`を付けないこと
+- **[MUST]** 制御構文の条件式に`()`を付けないこと
 
 ```swift
 // Bad
@@ -116,14 +116,14 @@ let titles = recipe.map { $0.title }
 // Bad
 recipeManager.fetchRecipes(keyword: "Sushi") {
     if $1 != nil {
-        self.recipes = $0
+        recipes = $0
     }
 }
 
 // Good
-recipeManager.fetchRecipes(keyword: "Sushi") { recipes, error in
+recipeManager.fetchRecipes(keyword: "Sushi") { results, error in
     if error != nil {
-        self.recipes = recipes
+        recipes = results
     }
 }
 ```
@@ -202,33 +202,19 @@ let ingredients: [String: String] = [
 ```
 
 - **[SHOULD]** コールバックなど、複雑なブロック型を扱う場合には`typealias`を使うこと
-- **[SHOULD]** `NSString`型を使用しないこと
-- **[SHOULD]** `UInt`型を使用しないこと
 
 ```swift
 // Good
 typealias RecipeClientComplationBlock = (Result<[Recipe], APIError>) -> Void
 ```
 
+- **[SHOULD]** `NSString`型を使用しないこと
+- **[SHOULD]** `UInt`型を使用しないこと
+    - [利用が推奨されていないため](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID320)
+
 ## Enum
 
 - **[MUST]** 値はUpperCamelCaseで命名すること。ただしSwift 3から命名規則が変わることに留意すること
-- **[SHOULD]** enumを定義するとき、通常は`case`をまとめて記述すること。ただし、値を与える場合や可読性を損なう場合はこの限りではない
-
-```swift
-// Bad
-enum UserStatus {
-    case Guest
-    case LoggedIn
-    case Premium
-}
-
-// Good
-enum UserStatus {
-    case Guest, LoggedIn, Premium
-}
-```
-
 - **[MUST]** 型名が省略可能なときは省略すること
 
 ```swift
@@ -242,26 +228,19 @@ user.status = .Guest
 ## オプショナル
 
 - **[MUST]** 非オプショナル型を利用できる場合はそちらを使うこと
-- **[SHOULD]** オプショナル・バインディングが必要で`guard`の方が可読性が優れる場合はそちらを使うこと
+- **[MUST]** `guard`はオプショナル・バインディングを伴う場合のみに使い、条件式として利用しないこと
 
 ```swift
 // Bad
-if let recipes = client.recipes(withKeyword: "寿司") {
-    // ...
-} else {
-    throw APIError.RecipeNotFound
+guard isLoggedIn else {
+    return
 }
 
 // Good
-guard let recipes = client.recipes(withKeyword: "寿司") else {
-    throw APIError.RecipeNotFound
+if !isLoggeddIn {
+    return
 }
-
-// ...
 ```
-
-- **[SHOULD]** 暗黙的アンラップ型(implicitly unwrapped optional)の使用は避けること
-    - 可能な限りオプショナル・バインディングを利用する
 
 ## 例外
 
@@ -308,18 +287,7 @@ let borderRadius: CGFloat = 1
 let borderRadius: CGFloat = 1.0
 ```
 
-- **[SHOULD]** 必要の無い明示的な`self`参照は避けること。ただし、`self`を付与した場合の方が可読性が高い場合は使っても良い
-
-```swift
-// Good
-public class Pantry {
-    private(set) var foods: [Food] = []
-
-    func addFood(food: Food) {
-        foods.append(food)
-    }
-}
-```
+- **[MUST]** `self`は常に省略すること。ただし、同名の変数名から割り当てるなど、`self`を明示する必要がある場合はその限りではない
 
 - **[MUST]** 将来的に廃止が予定されている構文を使わないこと
     - 例えば以下のようなものである
