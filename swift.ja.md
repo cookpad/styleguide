@@ -205,7 +205,7 @@ let ingredients: [String: String] = [
 
 ```swift
 // Good
-typealias RecipeClientComplationBlock = (Result<[Recipe], APIError>) -> Void
+typealias RecipeClientCompletionBlock = (Result<[Recipe], APIError>) -> Void
 ```
 
 - **[SHOULD]** `NSString`型を使用しないこと
@@ -242,7 +242,7 @@ if !isLoggeddIn {
 }
 ```
 
-```
+```swift
 // Good
 guard let user = manager.currentUser {
     return
@@ -262,7 +262,7 @@ label.text = user.name
     - ただし、`NSObject`の継承や既存クラスのextensionなどを用いてObjective-Cからも利用可能になる場合は付けること
 - **[MUST]** 定数の命名も変数に従うこと
     - UpperCamelCase、SNAKE_CASEを用いたり、`k`プレフィックスやベンダープレフィックスを付与してはならない
-- **[MUST]** 非ASCII文字を命名に使用しないこと
+- **[MUST]** 非ASCII文字を名前に使用しないこと
 - **[SHOULD]** 階層構造を示す命名は避け、ネストで表現すること
 
 ```swift
