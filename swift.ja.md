@@ -19,7 +19,7 @@
 
 ## コードスタイル
 
-- **[MUST]** インデントにはソフトタブを使い、幅は4にすること
+- **[MUST]** インデントにはソフトタブを使い、幅は4スペースにすること
 - **[MUST]** ファイル終端は改行すること
 - **[MUST]** オープンブラケットは同じ行に記述すること
 
@@ -185,7 +185,7 @@ var foodCount: Int {
 
 ```swift
 // Bad
-let seasonings: Array<String> = ["suger", "salt", "vinegar", "soy sauce", "miso"]
+let seasonings: Array<String> = ["sugar", "salt", "vinegar", "soy sauce", "miso"]
 let ingredients: Dictionary<String, String> = [
     "bacon": "100g",
     "lettuce": "1/4",
@@ -193,7 +193,7 @@ let ingredients: Dictionary<String, String> = [
 ]
 
 // Good
-let seasonings: [String] = ["suger", "salt", "vinegar", "soy sauce", "miso"]
+let seasonings: [String] = ["sugar", "salt", "vinegar", "soy sauce", "miso"]
 let ingredients: [String: String] = [
     "bacon": "100g",
     "lettuce": "1/4",
@@ -237,7 +237,7 @@ guard isLoggedIn else {
 }
 
 // Good
-if !isLoggeddIn {
+if !isLoggedIn {
     return
 }
 ```
@@ -317,7 +317,7 @@ let rect = CGRectMake(10.0, 20.0, 30.0, 40.0)
 let rect = CGRect(x: 10.0, y: 20.0, width: 30.0, height: 40.0)
 ```
 
-- **[MUST]** コンビニエンスコンストラクタではなく、コンストラクタを使うこと
+- **[MUST]** 代替可能な場合は、クラスメソッドではなく、コンストラクタを使うこと
 
 ```swift
 // Bad
