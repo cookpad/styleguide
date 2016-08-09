@@ -90,7 +90,7 @@ func update() {
 
 ## クロージャー
 
-- **[MUST]** クロージャーが1つだけの場合、Trailing Closureを利用すること
+- **[MUST]** 引数のクロージャーが1つだけの場合、Trailing Closureを利用すること
 
 ```swift
 // Bad
@@ -102,14 +102,24 @@ client.fetchRecipes(withKeyword: "Sushi") { recipes in
 }
 ```
 
+- **[MUST]** 引数がクロージャー1つだけの場合、`()`を省略すること
+
+```swift
+// Bad
+let titles = recipes.map() { $0.title }
+
+// Good
+let titles = recipes.map { $0.title }
+```
+
 - **[MUST]** クロージャーの定義が1行だけの場合はshorthand argumentを利用すること。逆に複数行にわたる場合は利用を避けること
 
 ```swift
 // Bad
-let titles = recipe.map { recipe in recipe.title }
+let titles = recipes.map { recipe in recipe.title }
 
 // Good
-let titles = recipe.map { $0.title }
+let titles = recipes.map { $0.title }
 ```
 
 ```swift
@@ -285,15 +295,6 @@ class Recipe {
 
 
 ## 構文
-
-- **[MUST]** 浮動小数点型である場合、整数値であっても小数点以下を明示すること
-
-```swift
-// Bad
-let borderRadius: CGFloat = 1
-// Good
-let borderRadius: CGFloat = 1.0
-```
 
 - **[MUST]** `self`は常に省略すること。ただし、同名の変数名から割り当てるなど、`self`を明示する必要がある場合はその限りではない
 
