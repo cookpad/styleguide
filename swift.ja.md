@@ -53,7 +53,7 @@ let ingredients = [
 ]
 ```
 
-- **[MUST]** 制御構文の条件式に`()`を付けないこと
+- **[MUST]** 条件式全体を囲う`()`は使わないこと
 
 ```swift
 // Bad
@@ -240,6 +240,14 @@ guard isLoggedIn else {
 if !isLoggeddIn {
     return
 }
+```
+
+```
+// Good
+guard let user = manager.currentUser {
+    return
+}
+label.text = user.name
 ```
 
 ## 例外
