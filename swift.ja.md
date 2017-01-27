@@ -4,7 +4,7 @@
 
 本文書は、CookpadにおけるSwiftコードのスタイル基準を定めるものである。
 
-また、本文書はSwift3.0.1の言語仕様に準拠している。
+また、本文書はSwift3.0.2の言語仕様に準拠している。
 
 ## 目的
 
@@ -92,11 +92,11 @@ func update() {
 
 ```swift
 // Bad
-client.fetchRecipes(with: "Sushi", completion: { recipes in
+client.search(keyword: "Sushi", completion: { recipes in
 })
 
 // Good
-client.fetchRecipes(with: "Sushi") { recipes in
+client.search(keyword: "Sushi") { recipes in
 }
 ```
 
@@ -122,14 +122,14 @@ let titles = recipes.map { $0.title }
 
 ```swift
 // Bad
-recipeManager.fetchRecipes(by: "Sushi") {
+client.search(keyword: "Sushi", completion: {
     if $1 != nil {
         recipes = $0
     }
 }
 
 // Good
-recipeManager.fetchRecipes(by: "Sushi") { results, error in
+client.search(keyword: "Sushi", completion: { results, error in
     if error != nil {
         recipes = results
     }
