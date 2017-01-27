@@ -241,10 +241,10 @@ let url = URL(string: "https://cookpad.com/")
 
 ```swift
 // Bad
-user.status = UserStatus.Guest
+user.status = UserStatus.guest
 
 // Good
-user.status = .Guest
+user.status = .guest
 ```
 
 ## オプショナル
