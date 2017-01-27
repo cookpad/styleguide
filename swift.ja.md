@@ -219,7 +219,7 @@ let ingredients: [String: String] = [
 typealias RecipeClientCompletionBlock = (Result<[Recipe], APIError>) -> Void
 ```
 
-- **[MUST]** `NS`プレフィックスのないブリッジングが提供されている際はそちらを用いること
+- **[SHOULD]** `NS`プレフィックスのないブリッジングが提供されている際はそちらを用いること
     - ただし、提供されていないメソッドを用いる必要がある場合などはその限りではない
 
 ```swift
