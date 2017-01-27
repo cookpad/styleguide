@@ -72,6 +72,7 @@ if a == 0 {
 - **[MUST]** Objective-Cからの参照が必要な場合を除き`NSObject`を継承しないこと
 - **[SHOULD]** `mutating`な構造体は利用を避けること
     - 一般的に構造体は不変であることが期待されるため
+- **[SHOULD]]** `Any`を使える場面では`AnyObject`に優先して使用すること
 
 ## メソッド
 
@@ -94,11 +95,11 @@ func update() {
 
 ```swift
 // Bad
-client.fetchRecipes(withKeyword: "Sushi", completion: { recipes in
+client.fetchRecipes(with: "Sushi", completion: { recipes in
 })
 
 // Good
-client.fetchRecipes(withKeyword: "Sushi") { recipes in
+client.fetchRecipes(with: "Sushi") { recipes in
 }
 ```
 
@@ -124,14 +125,14 @@ let titles = recipes.map { $0.title }
 
 ```swift
 // Bad
-recipeManager.fetchRecipes(keyword: "Sushi") {
+recipeManager.fetchRecipes(by: "Sushi") {
     if $1 != nil {
         recipes = $0
     }
 }
 
 // Good
-recipeManager.fetchRecipes(keyword: "Sushi") { results, error in
+recipeManager.fetchRecipes(by: "Sushi") { results, error in
     if error != nil {
         recipes = results
     }
@@ -278,6 +279,7 @@ label.text = user.name
 
 ## 命名
 
+- **[MUST]** [Swift API Design Guideline](https://swift.org/documentation/api-design-guidelines/)に従うこと 
 - **[MUST]** 利用しない戻り値、引数は`_`にすること
 - **[MUST]** ベンダープレフィックスを付与しないこと
     - ただし、`NSObject`の継承や既存クラスのextensionなどを用いてObjective-Cからも利用可能になる場合は付けること
