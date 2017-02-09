@@ -4,6 +4,13 @@
 
 This guide defines the conventions for writing Python code at Cookpad Inc.
 
+General rules:
+
+ - value readability and maintainability
+ - keep it simple
+ - be consistent in your style 
+ - follow the style of the project you're working on (or refactor, if all involved agree)
+
 ## Python version
 
 - **[SHOULD]** When possible, projects should use Python 3 syntax. Use of Python 2 should be motivated by extenrnal reasons, like dependencies or heavy use of legacy code.
