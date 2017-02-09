@@ -9,7 +9,7 @@ General rules:
  - value readability and maintainability
  - keep it simple
  - be consistent in your style 
- - follow the style of the project you're working on (or refactor, if all involved agree)
+ - for things not in this guide, be consistent with the style of the project you're working on
 
 ## Python version
 
