@@ -13,24 +13,25 @@ General rules:
 
 ## Python version
 
-- **[SHOULD]** When possible, projects should use Python 3 syntax. Use of Python 2 should be motivated by extenrnal reasons, like dependencies or heavy use of legacy code.
+ - **[SHOULD]** When possible, projects should use Python 3 syntax. Use of Python 2 should be motivated by extenrnal reasons, like dependencies or heavy use of legacy code.
 
 ## Language Features
 
 🙌Avoid:
 
-- global variables
+ - global variables
 
 👋Use for simple cases (one line):
 
-- lambda functions
-- list comprehensions `[ingredient.name for ingredients in recipe]`
-- conditional expressions `sugar = 1 if 'milk' in coffee else 0`
+ - lambda functions
+ - list comprehensions `[ingredient.name for ingredients in recipe]`
+ - conditional expressions `sugar = 1 if 'milk' in coffee else 0`
+ - nested/local/inner classes and functions
 
 👍Use freely:
 
-- generators
-- default iterators and operators for types that support them
+ - generators
+ - default iterators and operators for types that support them
 
 ## Code style
 
@@ -44,8 +45,8 @@ Indent code blocks with 4 spaces.
 
 ### White space
 
-- **[MUST]** Spaces before and after operators, except in keyword arguments or parameter values.
-- **[MUST]** Single space after comma, no space before
+ - **[MUST]** Spaces before and after operators, except in keyword arguments or parameter values.
+ - **[MUST]** Single space after comma, no space before
 
 ```python
 def sample_function(x, y=0):
@@ -54,12 +55,12 @@ def sample_function(x, y=0):
         print(x, y)
 ```
 
-- **[SHOULD]** Two blank lines between top level definitions, one blank line between method definitions
-- **[SHOULD]** Avoid semicolons
-- **[SHOULD]** Keep line length up to 80 characters
-- **[SHOULD]** Two spaces before `#` character in in-line comments, one space after
-- **[SHOULD]** end your files with a single newline
-- **[SHOULD]** Avoid using whitespace to vertically align tokens: it makes the code hard to maintain
+ - **[SHOULD]** Two blank lines between top level definitions, one blank line between method definitions
+ - **[MUST]** Avoid ending lines with semicolons
+ - **[SHOULD]** Keep line length up to 80 characters
+ - **[SHOULD]** Two spaces before `#` character in in-line comments, one space after
+ - **[SHOULD]** End your files with a single newline
+ - **[SHOULD]** Avoid using whitespace to vertically align tokens: it makes the code hard to maintain
 
 ```python
 foo = 1000  # comment
@@ -73,10 +74,10 @@ dictionary = {
 
 ### Naming
 
-- `module_name`, `package_name`, `ClassName`, `method_name`, `ExceptionName`, `function_name`, `GLOBAL_CONSTANT_NAME`, `global_var_name`, `instance_var_name`, `function_parameter_name`, `local_var_name`.
+ - `module_name`, `package_name`, `ClassName`, `method_name`, `ExceptionName`, `function_name`, `GLOBAL_CONSTANT_NAME`, `global_var_name`, `instance_var_name`, `function_parameter_name`, `local_var_name`.
 
 ### Imports
 
-- **[SHOULD]** imports should be in separate lines
-- **[SHOULD]** imports are always put at the top of the file, just after any module comments and doc strings and before module globals and constants. Imports should be grouped with the order being most generic to least generic:
+ - **[SHOULD]** `import`s should be in separate lines
+ - **[SHOULD]** `import`s are always put at the top of the file, just after any module comments and doc strings and before module globals and constants. Imports should be grouped with the order being most generic to least generic.
 
