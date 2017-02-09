@@ -39,6 +39,14 @@ General rules:
 
 Run `pep8` on your code.
 
+### Comments and docstrings
+
+Comment and document your code for others to understand. Use best judgement when commenting: if anything may be hard to understand for someone reading the code for the first time, add a comment. 
+
+ - **[MUST]** Use simple, easy to understand English
+ - **[SHOULD]** Use docstrings for modules
+ - **[SHOULD]** Use docstrings for classes and methods that are accessible outside your module
+
 ### Indentation
 
 Indent code blocks with 4 spaces.
