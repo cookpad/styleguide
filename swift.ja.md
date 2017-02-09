@@ -92,11 +92,11 @@ func update() {
 
 ```swift
 // Bad
-client.search(keyword: "Sushi", completion: { recipes in
+client.search(for: "Sushi", completion: { recipes in
 })
 
 // Good
-client.search(keyword: "Sushi") { recipes in
+client.search(for: "Sushi") { recipes in
 }
 ```
 
@@ -122,14 +122,14 @@ let titles = recipes.map { $0.title }
 
 ```swift
 // Bad
-client.search(keyword: "Sushi") {
+client.search(for: "Sushi") {
     if $1 != nil {
         recipes = $0
     }
 }
 
 // Good
-client.search(keyword: "Sushi") { results, error in
+client.search(for: "Sushi") { results, error in
     if error != nil {
         recipes = results
     }
