@@ -7,6 +7,7 @@
 - Swift ([Japanese](swift.ja.md))
 - Android Java ([Japanese](java.ja.md), [English](java.en.md), [Android Studio settings](https://github.com/cookpad/android-code-style))
 - CoffeeScript ([Japanese](coffeescript.ja.md))
+- Python ([English](python.en.md))
 
 ## Keywords
 
