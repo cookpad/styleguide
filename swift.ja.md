@@ -1,12 +1,10 @@
-# 目次
-
 # Swiftコーディング規約
 
 ## はじめに
 
 本文書は、CookpadにおけるSwiftコードのスタイル基準を定めるものである。
 
-また、本文書はSwift2.2の言語仕様に準拠している。
+また、本文書はSwift3.0の言語仕様に準拠している。
 
 ## 目的
 
@@ -94,11 +92,11 @@ func update() {
 
 ```swift
 // Bad
-client.fetchRecipes(withKeyword: "Sushi", completion: { recipes in
+client.search(for: "Sushi", completion: { recipes in
 })
 
 // Good
-client.fetchRecipes(withKeyword: "Sushi") { recipes in
+client.search(for: "Sushi") { recipes in
 }
 ```
 
@@ -124,35 +122,32 @@ let titles = recipes.map { $0.title }
 
 ```swift
 // Bad
-recipeManager.fetchRecipes(keyword: "Sushi") {
+client.search(for: "Sushi") {
     if $1 != nil {
         recipes = $0
     }
 }
 
 // Good
-recipeManager.fetchRecipes(keyword: "Sushi") { results, error in
+client.search(for: "Sushi") { results, error in
     if error != nil {
         recipes = results
     }
 }
 ```
 
-- **[MUST]** 引数としてブロックを受け取るとき、そのブロックの生存期間がメソッドの生存期間よりも短い場合、`@noescape`を使うこと
+- **[MUST]** 引数としてブロックを受け取るとき、`@escaping`は必要な場合のみ使用すること
 - **[MUST]** `unowned`による変数キャプチャは避け、`weak`を使うこと
     - 適切に使用した場合はパフォーマンス改善に繋がるが、判断が難しくリスクを伴うため
 
 ## プロパティ、変数
 
 - **[MUST]** 変更が不要な値は`let`を用いて定数にすること
-- **[MUST]** 可能な場合は型宣言を省略すること。ただし、以下のように明示が必要な場合はその限りではない
-    - ジェネリクスを利用する場合
-    - リテラルを利用する場合
-    - 型推論がコンパイル速度に影響を及ぼす場合
+- **[SHOULD]** 可能な場合は型宣言を省略すること。ただし、型推論がコンパイル速度に影響を及ぼす場合はその限りではない
 
 ### プロパティ
 
-- **[MUST]** 公開する必要が無いプロパティには`private`を明示すること
+- **[MUST]** 最もスコープが狭くなるようにアクセスレベルを設定すること
 - **[MUST]** 外部から読み込めるが、書き込ませたくないプロパティには`private(set)`を明示すること
 - **[MUST]** プロパティの属性として`weak`を使える場所では使うこと
     - `@IBOutlet`やデリゲートなど、循環参照が発生しうる箇所に付与すること
@@ -218,25 +213,37 @@ let ingredients: [String: String] = [
 typealias RecipeClientCompletionBlock = (Result<[Recipe], APIError>) -> Void
 ```
 
-- **[SHOULD]** `NSString`型を使用しないこと
+- **[SHOULD]** `NS`プレフィックスのないブリッジングが提供されている際はそちらを用いること
+    - ただし、提供されていないメソッドを用いる必要がある場合などはその限りではない
+
+```swift
+// Bad
+let url = NSURL(string: "https://cookpad.com/")
+
+// Good
+let url = URL(string: "https://cookpad.com/")
+```
+
+
 - **[SHOULD]** `UInt`型を使用しないこと
     - [利用が推奨されていないため](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID320)
 
 ## Enum
 
-- **[MUST]** 値はUpperCamelCaseで命名すること。ただしSwift 3から命名規則が変わることに留意すること
+- **[MUST]** 値はlowerCamelCaseで命名すること
 - **[MUST]** 型名が省略可能なときは省略すること
 
 ```swift
 // Bad
-user.status = UserStatus.Guest
+user.status = UserStatus.guest
 
 // Good
-user.status = .Guest
+user.status = .guest
 ```
 
 ## オプショナル
 
+- **[MUST]** `Optional<T>`の表記は避け、シンタックスシュガー(`T?`)を使うこと
 - **[MUST]** 非オプショナル型を利用できる場合はそちらを使うこと
 - **[MUST]** `guard`はオプショナル・バインディングを伴う場合のみに使い、条件式として利用しないこと
 
@@ -267,6 +274,7 @@ label.text = user.name
 
 ## 命名
 
+- **[MUST]** [Swift API Design Guideline](https://swift.org/documentation/api-design-guidelines/)に従うこと 
 - **[MUST]** 利用しない戻り値、引数は`_`にすること
 - **[MUST]** ベンダープレフィックスを付与しないこと
     - ただし、`NSObject`の継承や既存クラスのextensionなどを用いてObjective-Cからも利用可能になる場合は付けること
@@ -278,7 +286,7 @@ label.text = user.name
 ```swift
 // Bad
 enum RecipeType {
-    case None
+    case none
 }
 
 class Recipe {
@@ -287,7 +295,7 @@ class Recipe {
 // Good
 class Recipe {
     enum Type {
-        case None
+        case none
     }
 }
 
@@ -299,12 +307,6 @@ class Recipe {
 - **[MUST]** `self`は常に省略すること。ただし、同名の変数名から割り当てるなど、`self`を明示する必要がある場合はその限りではない
 
 - **[MUST]** 将来的に廃止が予定されている構文を使わないこと
-    - 例えば以下のようなものである
-        - インクリメント、デクリメント
-        - C-style for loop
-        - `Selector`
-        - 引数の`var`キーワード
-
 
 ## Cocoa
 
@@ -322,10 +324,10 @@ let rect = CGRect(x: 10.0, y: 20.0, width: 30.0, height: 40.0)
 
 ```swift
 // Bad
-let url = NSURL.fileURLWithPath("/foo/bar")
+let url = NSURL.fileURL(withPath: "/foo/bar")
 
 // Good
-let url = NSURL(fileURLWithPath: "/foo/bar")
+let url = URL(fileURLWithPath: "/foo/bar")
 ```
 
 - **[MUST]** 関数ではなく、プロパティやメソッドを使うこと
@@ -337,4 +339,3 @@ let width = CGRectGetWidth(rect)
 // Good
 let width = rect.width
 ```
-
