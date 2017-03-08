@@ -261,7 +261,7 @@ if !isLoggedIn {
 
 ```swift
 // Good
-guard let user = manager.currentUser {
+guard let user = manager.currentUser else {
     return
 }
 label.text = user.name
