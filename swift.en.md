@@ -68,7 +68,6 @@ if a == 0 {
 ## Classes, Structs
 
 - **[MUST]** Unless a reference from Objective-C is needed, do not inherit from NSObject.
-- **[SHOULD]** Since structs should be immutable, do not use `mutating` attribute for structs.
 
 ## Method
 
