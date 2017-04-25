@@ -301,7 +301,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 - **[SHOULD]** Use `unless condition`, instead of `if !condition`.
 - **[SHOULD]** Use `until condition`, instead of `while !condition`.
-- **[SHOULD]** Do not use `else` for `unless`.
+- **[MUST]** Do not use `else` for `unless`.
 - **[MUST]** Put a line break just after the condition clause of `if`, `unless`, and `case`.  Do not follow a body code.
 - **[MUST]** Do not use `then` and `:` for the condition clause of `if`, `unless`, and `case`.
 - **[MUST]** Put a line break just after the condition clause of `while` and `until`.  Do not follow a body code.
