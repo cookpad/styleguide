@@ -19,7 +19,7 @@ This guide defines the conventions for writing Python code at Cookpad Inc.
 
 🙌Avoid:
 
- - global variables
+ - **[SHOULD]** avoid global variables
 
 👋Use for simple cases (one line):
 
@@ -37,7 +37,7 @@ This guide defines the conventions for writing Python code at Cookpad Inc.
 
 ### Lint
 
-Run `pep8` on your code. In the project root, create `setup.cfg` with the following section:
+**[MUST]** Run `pep8` on your code. In the project root, create `setup.cfg` with the following section:
 
 ```
 [pep8]
@@ -56,11 +56,21 @@ Comment and document your code for others to understand. Use best judgement when
 
 ### Quotation marks
 
-Use double `"` quotation marks.
+**[SHOULD]** Use double `"` quotation marks.
 
 ### Naming
 
- - `module_name`, `package_name`, `ClassName`, `method_name`, `ExceptionName`, `function_name`, `GLOBAL_CONSTANT_NAME`, `global_var_name`, `instance_var_name`, `function_parameter_name`, `local_var_name`.
+ - `module_name`
+ - `package_name`
+ - `ClassName`
+ - `method_name`
+ - `ExceptionName`
+ - `function_name`
+ - `GLOBAL_CONSTANT_NAME`
+ - `global_var_name`
+ - `instance_var_name`
+ - `function_parameter_name`
+ - `local_var_name`.
 
 ### Imports
 
