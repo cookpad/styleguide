@@ -8,7 +8,7 @@ This guide defines the conventions for writing Python code at Cookpad Inc.
 
  - value readability and maintainability
  - keep it simple
- - be consistent in your style 
+ - be consistent in your style
  - for things not in this guide, be consistent with the style of the project you're working on
 
 ## Python version
@@ -37,48 +37,26 @@ This guide defines the conventions for writing Python code at Cookpad Inc.
 
 ### Lint
 
-Run `pep8` on your code.
+Run `pep8` on your code. In the project root, create `setup.cfg` with the following section:
+
+```
+[pep8]
+max-line-length = 160
+```
+
+Lint your code before sending a pull request.
 
 ### Comments and docstrings
 
-Comment and document your code for others to understand. Use best judgement when commenting: if anything may be hard to understand for someone reading the code for the first time, add a comment. 
+Comment and document your code for others to understand. Use best judgement when commenting: if anything may be hard to understand for someone reading the code for the first time, add a comment.
 
  - **[MUST]** Use simple, easy to understand English
  - **[SHOULD]** Use docstrings for modules
  - **[SHOULD]** Use docstrings for classes and methods that are accessible outside your module
 
-### Indentation
+### Quotation marks
 
-Indent code blocks with 4 spaces.
-
-### White space
-
- - **[MUST]** Spaces before and after operators, except in keyword arguments or parameter values.
- - **[MUST]** Single space after comma, no space before
-
-```python
-def sample_function(x, y=0):
-    y = y + x
-    if x == 4:
-        print(x, y)
-```
-
- - **[SHOULD]** Two blank lines between top level definitions, one blank line between method definitions
- - **[MUST]** Avoid ending lines with semicolons
- - **[SHOULD]** Keep line length up to 80 characters
- - **[SHOULD]** Two spaces before `#` character in in-line comments, one space after
- - **[SHOULD]** End your files with a single newline
- - **[SHOULD]** Avoid using whitespace to vertically align tokens: it makes the code hard to maintain
-
-```python
-foo = 1000  # comment
-long_name = 2  # comment that should not be aligned
-
-dictionary = {
-    'foo': 1,
-    'long_name': 2
-}
-```
+Use double `"` quotation marks.
 
 ### Naming
 
