@@ -89,8 +89,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 ## Line columns
 
-- **[SHOULD]** Keep lines shorter than 80 characters.
-- **[MUST]** Keep lines shorter than 128 characters.
+- **[SHOULD]** Keep lines shorter than 128 characters.
 
 ## Numbers
 
