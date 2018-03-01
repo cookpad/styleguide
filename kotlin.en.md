@@ -20,7 +20,7 @@ This guide aims to accomplish the following objectives:
 - **[SHOULD]** Put `,` at the end of elements in Enum.
   - Reduce the difference when we add new elements.
 
-```
+```kotlin
 // Bad
 enum class Color {
     RED,
@@ -40,7 +40,7 @@ enum class Color {
 
 - **[MUST]** Put lambda expression out of `()` when last argument type of method is function.
 
-```
+```kotlin
 // Bad
 val ints = Array(5, { it * 2 })
 
@@ -50,7 +50,7 @@ val ints = Array(5) { it * 2 }
 
 - **[MUST]** Omit `()` when method has only one argument that is function.
 
-```
+```kotlin
 // Bad
 val nums = ints.map({ it * it })
 
@@ -60,7 +60,7 @@ val nums = ints.map { it * it }
 
 - **[MUST]** Do not use `Unit` as return type.
 
-```
+```kotlin
 // Bad
 fun method(): Unit {
     // do something
@@ -77,7 +77,7 @@ fun method() {
 - **[MUST]** Use `!!` only when you would like to explicit Non-Null variables
 - **[SHOULD]** Use `?:` operator as possible to check null value in assignment expression.
 
-```
+```kotlin
 // Bad
 val message = if (e != null) e.message else ""
 
@@ -90,7 +90,7 @@ val message = e.message ?: ""
 - **[MUST]** Declare parameter names in nested lambda expressions.
 - **[SHOULD]** Declare parameter names in single lambda expressions.
 
-```
+```kotlin
 // BAD
 fun run() {
     hogeEntity?.let { hoge ->
