@@ -1,13 +1,10 @@
-# Style guides in COOKPAD
+# Style guides in Zaim
 
 ## Guides
 
-- Ruby ([Japanese](ruby.ja.md), [English](ruby.en.md))
-- Objective-C ([Japanese](objective-c.ja.md))
-- Swift ([Japanese](swift.ja.md), [English](swift.en.md))
-- Android Java ([Japanese](java.ja.md), [English](java.en.md), [Android Studio settings](https://github.com/cookpad/android-code-style))
-- CoffeeScript ([Japanese](coffeescript.ja.md))
-- Python ([English](python.en.md))
+- Ruby ([Japanese](ruby.ja.md))
+- Swift ([Japanese](swift.ja.md))
+- Android Java ([Japanese](java.ja.md), [Android Studio settings](https://github.com/cookpad/android-code-style))
 
 ## Keywords
 
