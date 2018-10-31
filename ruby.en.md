@@ -356,7 +356,7 @@ To ensure readability and consistency within the code, the guide presents a numb
     p (1 + 2)
     ```
 
-- **[SHOULD]** Omit `{ }` of a hash literal, when put on the end of an argument list.
+- **[SHOULD]** Avoid omitting `{ }` of a hash literal, when put on the end of an argument list.
 
     ```ruby
     # good
