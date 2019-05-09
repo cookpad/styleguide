@@ -24,7 +24,7 @@
 この文書は、クックパッド株式会社における CoffeeScript のスタイル規準を示すものです。
 ウェブプログラマであれば誰もが読みやすいコードになるように、可読性と一貫性を重視して規準を定めています。
 「bad」として例示されている記法の中には、特に悪いと思えないようなものも存在していますが、その理由は、「書きやすさ」よりも「読みやすさ」、コードの一貫性などを優先するためです。
-なお、この文書で定義しないスタイルや、詳細を定義していない部分について議論となった場合は、[Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)([日本語訳](http://cou929.nu/data/google_javascript_style_guide/) )のスタイルを参考にすることとします。
+なお、この文書で定義しないスタイルや、詳細を定義していない部分について議論となった場合は、[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)([日本語訳](http://cou929.nu/data/google_javascript_style_guide/) )のスタイルを参考にすることとします。
 
 
 <hr id="indentation" />
