@@ -104,7 +104,7 @@ Style/PercentLiteralDelimiters:
   Enabled: false
 
 # [MUST] Do not write only `Object#to_s` in string interpolation, such as `"#{obj.to_s}"`.
-Style/UnneededInterpolation:
+Style/RedundantInterpolation:
   Enabled: true
 
 # [SHOULD] (Ruby 1.9+) Use `\u` notation to write Unicode characters rather than writing the bytes in `\x`, e.g. `"\u{3333}"` instead of `"\xE3\x8C\xB3"`.  If you have to write a script for both Ruby 1.8 and 1.9, you may write the bytes in `\x` form.
