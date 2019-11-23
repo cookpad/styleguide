@@ -380,14 +380,14 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
 
     ```ruby
     # good
-    puts [1, 2, 3].map {|i|
-      i * i
-    }
-
-    # bad
     puts [1, 2, 3].map do |i|
       i * i
     end
+    
+    # bad
+    puts [1, 2, 3].map {|
+      i * i
+    }
 
     # good
     [1, 2, 3].map {|n|
