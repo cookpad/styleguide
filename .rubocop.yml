@@ -65,7 +65,7 @@ Layout/TrailingEmptyLines:
 ########################
 
 # [SHOULD] Keep lines shorter than 128 characters.
-Metrics/LineLength:
+Layout/LineLength:
   Max: 128
 
 ########################
