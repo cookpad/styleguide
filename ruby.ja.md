@@ -82,7 +82,21 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
 <a name="empty-lines"></a>
 ## 空行
 
-- **[MUST]** ファイルの末尾に空行を置いてはならない。
+- **[MUST]** ファイルの末尾ではちょうど1回だけ改行する。
+
+    ``` ruby
+    # bad
+    class Foo; end
+
+    # EOF
+
+    # bad
+    class Foo; end # EOF
+
+    # good
+    class Foo; end
+    # EOF
+    ```
 
 <a name="character-encoding-and-magic-comments"></a>
 ## 文字エンコーディングとマジックコメント

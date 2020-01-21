@@ -46,7 +46,7 @@ Layout/TrailingWhitespace:
 # Empty lines
 ########################
 
-# [MUST] Do not put empty lines at the end of a file.
+# [MUST] Leave exactly one newline at the end of a file.
 Layout/TrailingEmptyLines:
   EnforcedStyle: final_newline
 
