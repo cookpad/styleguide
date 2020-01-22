@@ -1,5 +1,4 @@
 AllCops:
-  TargetRubyVersion: 2.5
   DisabledByDefault: true
   DisplayCopNames: true
   Exclude:
