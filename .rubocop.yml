@@ -203,6 +203,9 @@ Style/ParallelAssignment:
 # [MUST] Put whitespace around assignment operators.
 
 # [MUST] Do not write assignment expressions in conditional clauses.
+Lint/AssignmentInCondition:
+  Enabled: true
+  AllowSafeAssignment: false
 
 ########################
 # Control structures
