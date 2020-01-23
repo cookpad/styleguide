@@ -75,7 +75,21 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 ## Empty lines
 
-- **[MUST]** Do not put empty lines at the end of a file.
+- **[MUST]** Leave exactly one newline at the end of a file.
+
+    ``` ruby
+    # bad
+    class Foo; end
+
+    # EOF
+
+    # bad
+    class Foo; end # EOF
+
+    # good
+    class Foo; end
+    # EOF
+    ```
 
 ## Character encoding and magic comments
 
