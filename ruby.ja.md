@@ -388,14 +388,26 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
     p (1 + 2)
     ```
 
-- **[SHOULD]** パラメータリストの末尾にハッシュリテラルを書く場合は、ハッシュリテラルの括弧を省略すること。
+- **[SHOULD]** Ruby 3.0 からのキーワード引数とポジショナル引数の分離を踏まえ、メソッド呼び出しではキーワード引数に渡しているのかハッシュオブジェクトを渡しているのかを区別する。
 
     ```ruby
-    # good
-    foo(1, 2, foo: :bar, baz: 42)
+    def foo(a:, b:)
+      p(a, b)
+    end
 
-    # bad
-    foo(1, 2, { foo: :bar, baz: 42 })
+    def bar(hash)
+      p(hash)
+    end
+
+    # good
+    foo(a: 1, b: 2)
+    # good
+    bar({a: 1, b: 2})
+
+    # bad - foo expects keyword arguments, but it passes a hash
+    foo({a: 1, b: 2})
+    # bad - bar expects a hash, but it passes keyword arguments
+    bar(a: 1, b: 2)
     ```
 
 - **[MUST]** ブロック付きメソッド呼び出しでは、`do`/`end` 記法でブロックを書くこと。i.e. blockの副作用が目的
