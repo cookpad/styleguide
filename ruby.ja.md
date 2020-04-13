@@ -410,33 +410,33 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
     bar(a: 1, b: 2)
     ```
 
-- **[MUST]** ブロック付きメソッド呼び出しでは、`do`/`end` 記法でブロックを書くこと。i.e. blockの副作用が目的
+- **[MUST]** ブロック付きメソッド呼び出しでブロックの戻り値を使わない場合（つまりブロックの副作用が目的の場合）は、`do`/`end` 記法でブロックを書くこと。
 - **[MUST]** ブロック付きメソッド呼び出しの戻り値に対して処理を行う場合は、ブロックを中括弧で書くこと。
 
     ```ruby
     # good
+    puts [1, 2, 3].map {|i|
+      i * i
+    }
+
+    # bad
     puts [1, 2, 3].map do |i|
       i * i
     end
-    
-    # bad
-    puts [1, 2, 3].map {|
-      i * i
-    }
 
     # good
     [1, 2, 3].map {|n|
       n * n
-    }.each {|n|
+    }.each do |n|
       puts Math.sqrt(n)
-    }
+    end
 
     # bad
     [1, 2, 3].map do |n|
       n * n
-    end.each do |n|
+    end.each {|n|
       puts Math.sqrt(n)
-    end
+    }
     ```
 
 - **[MUST]** ブロック付きメソッド呼び出しを1行で書く場合は、ブロックを中括弧で書くこと。
