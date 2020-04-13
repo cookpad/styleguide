@@ -370,14 +370,26 @@ To ensure readability and consistency within the code, the guide presents a numb
     p (1 + 2)
     ```
 
-- **[SHOULD]** Omit `{ }` of a hash literal, when put on the end of an argument list.
+- **[SHOULD]** Due to separation of keyword and positional arguments in Ruby 3.0, distinguish between using keyword arguments and using a hash in method calls.
 
     ```ruby
-    # good
-    foo(1, 2, foo: :bar, baz: 42)
+    def foo(a:, b:)
+      p(a, b)
+    end
 
-    # bad
-    foo(1, 2, { foo: :bar, baz: 42 })
+    def bar(hash)
+      p(hash)
+    end
+
+    # good
+    foo(a: 1, b: 2)
+    # good
+    bar({a: 1, b: 2})
+
+    # bad - foo expects keyword arguments, but it passes a hash
+    foo({a: 1, b: 2})
+    # bad - bar expects a hash, but it passes keyword arguments
+    bar(a: 1, b: 2)
     ```
 
 - **[MUST]** Use `do`/`end` form for blocks of method calls where the return value of the block is unused. i.e. blocks executed for side-effects

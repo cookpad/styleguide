@@ -261,9 +261,7 @@ Style/WhileUntilModifier:
 
 # [MUST] Do not put whitespace between a method name and parenthesis.
 
-# [SHOULD] Omit `{ }` of a hash literal, when put on the end of an argument list.
-Style/BracesAroundHashParameters:
-  EnforcedStyle: no_braces
+# [SHOULD] Due to separation of keyword and positional arguments in Ruby 3.0, distinguish between using keyword arguments and using a hash in method calls.
 
 # [MUST] Use `do`/`end` form for blocks of method calls where the return value of the block is unused. i.e. blocks executed for side-effects
 
