@@ -18,8 +18,8 @@ AllCops:
 ########################
 
 # [MUST] Use two spaces for 1-level of indent. Do not use the horizontal tab character.
-Layout/Tab:
-  Enabled: true
+Layout/IndentationStyle:
+  EnforcedStyle: spaces
 Layout/IndentationWidth:
   Enabled: true
 Layout/IndentationConsistency:
