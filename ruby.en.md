@@ -397,28 +397,28 @@ To ensure readability and consistency within the code, the guide presents a numb
 
     ```ruby
     # good
-    puts [1, 2, 3].map do |i|
-      i * i
-    end
-
-    # bad
     puts [1, 2, 3].map {|i|
       i * i
     }
 
+    # bad
+    puts [1, 2, 3].map do |i|
+      i * i
+    end
+
     # good
     [1, 2, 3].map {|n|
       n * n
-    }.each {|n|
+    }.each do |n|
       puts Math.sqrt(n)
-    }
+    end
 
     # bad
     [1, 2, 3].map do |n|
       n * n
-    end.each do |n|
+    end.each {|n|
       puts Math.sqrt(n)
-    end
+    }
     ```
 
 - **[MUST]** Use brace block for a method call written in one line.
