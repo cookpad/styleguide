@@ -1,3 +1,9 @@
+# 注意
+
+**CoffeeScript の利用は非推奨です。**
+
+---
+
 # Cookpad CoffeeScript Coding Style Guide
 
 # 目次
