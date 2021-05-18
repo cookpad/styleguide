@@ -46,7 +46,7 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
       merge(User.paid).
       where(created_at: target_date)
     posts.each do |post|
-      next if stuff_ids.include?(post.user_id)
+      next if staff_ids.include?(post.user_id)
       comment_count += post.comments.size
     end
 
@@ -54,7 +54,7 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
     posts = Post.joins(:user).
       merge(User.paid).
       where(created_at: target_date).each do |post|
-        next if stuff_ids.include?(post.user_id)
+        next if staff_ids.include?(post.user_id)
         comment_count += post.comments.size
       end
     ```
