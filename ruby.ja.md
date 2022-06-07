@@ -24,9 +24,11 @@
 
 ## はじめに
 
-本文書は、クックパッド株式会社での Ruby コードのスタイル規準を定めるものである。
+本文書は、株式会社ブイクックでの Ruby コードのスタイル規準を定めるものである。
 Ruby プログラマとしての素養をある程度備えている者なら誰もが読みやすいコードになるよう、可読性と一貫性を重視して規準を定めている。
 「bad」として例示されている記法の中には、特に悪いと思えないようなものも存在しているが、その理由はコードの一貫性を保つためである。
+
+inspired by [cookpad](https://github.com/cookpad/styleguide/blob/master/ruby.ja.md) , [airbnb](https://github.com/airbnb/ruby#redundant-self)
 
 <a name="ruby-version"></a>
 
@@ -563,6 +565,28 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
       end
     end
    ```
+
+
+- **[SHOULD]** カレントインスタンスを参照する際は、`self.some_method`よりも`some_method`の方が好ましい
+
+```
+# bad
+def end_date
+  self.start_date + self.nights
+end
+
+# good
+def end_date
+  start_date + nights
+end
+```
+
+以下のような3つのケースにおいては、`self.`は、良い使い方である。
+
+1. クラスメソッドを定義するケース: `seld.some_method`
+2. `self`が`ActiveRecord Model`である場合の属性の割り当てを含む、左辺が割り当てメソッドのケース: `self.guest = user.`
+3. 現在のインスタンスクラスを参照するケース: `self.class`
+
 
 - **[MUST]** メソッド定義の後で、そのメソッドの可視性を変更するために `private` や `protected` や `public` を引数付きで呼び出す場合は、メソッド定義とこれらのメソッド呼び出しの間に空行を入れてはならない。
 
