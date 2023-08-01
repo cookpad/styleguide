@@ -418,15 +418,14 @@ To ensure readability and consistency within the code, the guide presents a numb
     end.select(&:odd?)
 
     # good - use { } when passing method calls with blocks to an other method call
-    puts([1, 2, 3].map {|i|
+    do_something([1, 2, 3].map {|i|
       i * i
     })
 
     # bad
-    puts([1, 2, 3].map do |i|
+    do_something([1, 2, 3].map do |i|
       i * i
     end)
-
     ```
 
 - **[MUST]** Use brace block for a method call written in one line.
