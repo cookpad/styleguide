@@ -392,22 +392,12 @@ To ensure readability and consistency within the code, the guide presents a numb
     bar(a: 1, b: 2)
     ```
 
-- **[MUST]** Use the `do`/`end` form for multi-line blocks, except for the following cases:
-  - Use the `{ }` form (i.e. brace blocks) for multi-line blocks when chaining other method calls to its return value.
-  - Use the `{ }` form (i.e. brace blocks) for multi-line blocks where its return value is passed to another method as an argument.
+- **[MUST]** Use brace blocks `{ }` for a method call written in one line.
+
+- **[MUST]** Use brace blocks `{ }` for multi-line blocks when chaining other method calls to itself.
 
     ```ruby
     # good
-    [1, 2, 3].each do |i|
-      puts i * i
-    end
-
-    # bad
-    [1, 2, 3].each {|i|
-      puts i * i
-    }
-
-    # good - use { } when chaining methods
     [1, 2, 3].map {|n|
       n * n
     }.select(&:odd?)
@@ -416,19 +406,8 @@ To ensure readability and consistency within the code, the guide presents a numb
     [1, 2, 3].map do |n|
       n * n
     end.select(&:odd?)
-
-    # good - use { } when passing method calls with blocks to an other method call
-    do_something([1, 2, 3].map {|i|
-      i * i
-    })
-
-    # bad
-    do_something([1, 2, 3].map do |i|
-      i * i
-    end)
     ```
 
-- **[MUST]** Use brace block for a method call written in one line.
 - **[MUST]** Obey the following "good" form in `do`/`end` form of blocks.
 
     ```ruby
