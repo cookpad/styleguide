@@ -394,7 +394,7 @@ To ensure readability and consistency within the code, the guide presents a numb
 
 - **[MUST]** Use brace blocks `{ }` for a method call written in one line.
 
-- **[MUST]** Use brace blocks `{ }` for multi-line blocks when chaining other method calls to its return value.
+- **[MUST]** Use brace blocks `{ }` for multi-line blocks when chaining other method calls to itself.
 
     ```ruby
     # good
