@@ -263,9 +263,9 @@ Style/WhileUntilModifier:
 
 # [SHOULD] Due to separation of keyword and positional arguments in Ruby 3.0, distinguish between using keyword arguments and using a hash in method calls.
 
-# [MUST] Use `do`/`end` form for blocks of method calls where the return value of the block is unused. i.e. blocks executed for side-effects
-
-# [MUST] Use `{ }` form (i.e. brace blocks) for blocks of method calls where the return value of the block used. e.g. as an argument of the other method call.
+# [MUST] Use the `do`/`end` form for multi-line blocks, except for the following cases:
+#   - Use the `{ }` form (i.e. brace blocks) for multi-line blocks when chaining other method calls to its return value.
+#   - Use the `{ }` form (i.e. brace blocks) for multi-line blocks where its return value is passed to another method as an argument.
 
 # [MUST] Use brace block for a method call written in one line.
 # Style/BlockDelimiters:

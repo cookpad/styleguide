@@ -410,33 +410,40 @@ Ruby プログラマとしての素養をある程度備えている者なら誰
     bar(a: 1, b: 2)
     ```
 
-- **[MUST]** ブロック付きメソッド呼び出しでブロックの戻り値を使わない場合（つまりブロックの副作用が目的の場合）は、`do`/`end` 記法でブロックを書くこと。
-- **[MUST]** ブロック付きメソッド呼び出しの戻り値に対して処理を行う場合は、ブロックを中括弧で書くこと。
+- **[MUST]** ブロック付きメソッド呼び出しは、次の条件に合致しない限り `do`/`end` 記法でブロックを書くこと。
+  - ブロック付きメソッド呼び出しにメソッドをさらにチェーンする場合は、ブロックを中括弧 (`{ }`) で書くこと。
+  - ブロック付きメソッド呼び出しの式を他のメソッドの引数とする場合は、ブロックを中括弧 (`{ }`) で書くこと。
 
     ```ruby
     # good
-    puts [1, 2, 3].map {|i|
-      i * i
-    }
+    [1, 2, 3].each do |i|
+      puts i * i
+    end
 
     # bad
-    puts [1, 2, 3].map do |i|
-      i * i
-    end
+    [1, 2, 3].each {|i|
+      puts i * i
+    }
 
-    # good
+    # good - use { } when chaining methods
     [1, 2, 3].map {|n|
       n * n
-    }.each do |n|
-      puts Math.sqrt(n)
-    end
+    }.select(&:odd?)
 
     # bad
     [1, 2, 3].map do |n|
       n * n
-    end.each {|n|
-      puts Math.sqrt(n)
-    }
+    end.select(&:odd?)
+
+    # good - use { } when passing method calls with blocks to an other method call
+    do_something([1, 2, 3].map {|i|
+      i * i
+    })
+
+    # bad
+    do_something([1, 2, 3].map do |i|
+      i * i
+    end)
     ```
 
 - **[MUST]** ブロック付きメソッド呼び出しを1行で書く場合は、ブロックを中括弧で書くこと。

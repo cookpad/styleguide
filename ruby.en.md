@@ -392,33 +392,40 @@ To ensure readability and consistency within the code, the guide presents a numb
     bar(a: 1, b: 2)
     ```
 
-- **[MUST]** Use `do`/`end` form for blocks of method calls where the return value of the block is unused. i.e. blocks executed for side-effects
-- **[MUST]** Use `{ }` form (i.e. brace blocks) for blocks of method calls where the return value of the block used. e.g. as an argument of the other method call.
+- **[MUST]** Use the `do`/`end` form for multi-line blocks, except for the following cases:
+  - Use the `{ }` form (i.e. brace blocks) for multi-line blocks when chaining other method calls to its return value.
+  - Use the `{ }` form (i.e. brace blocks) for multi-line blocks where its return value is passed to another method as an argument.
 
     ```ruby
     # good
-    puts [1, 2, 3].map {|i|
-      i * i
-    }
+    [1, 2, 3].each do |i|
+      puts i * i
+    end
 
     # bad
-    puts [1, 2, 3].map do |i|
-      i * i
-    end
+    [1, 2, 3].each {|i|
+      puts i * i
+    }
 
-    # good
+    # good - use { } when chaining methods
     [1, 2, 3].map {|n|
       n * n
-    }.each do |n|
-      puts Math.sqrt(n)
-    end
+    }.select(&:odd?)
 
     # bad
     [1, 2, 3].map do |n|
       n * n
-    end.each {|n|
-      puts Math.sqrt(n)
-    }
+    end.select(&:odd?)
+
+    # good - use { } when passing method calls with blocks to an other method call
+    do_something([1, 2, 3].map {|i|
+      i * i
+    })
+
+    # bad
+    do_something([1, 2, 3].map do |i|
+      i * i
+    end)
     ```
 
 - **[MUST]** Use brace block for a method call written in one line.
