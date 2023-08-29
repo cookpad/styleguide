@@ -392,9 +392,9 @@ To ensure readability and consistency within the code, the guide presents a numb
     bar(a: 1, b: 2)
     ```
 
-- **[MUST]** Use the `do`/`end` form for multi-line blocks, unless it matches the following conditions.
-- **[MUST]** Use the `{ }` form (i.e. brace blocks) for multi-line blocks when chaining other method calls to its return value.
-- **[MUST]** Use the `{ }` form (i.e. brace blocks) for multi-line blocks where its return value is passed to another method as an argument.
+- **[MUST]** Use the `do`/`end` form for multi-line blocks, except for the following cases:
+  - Use the `{ }` form (i.e. brace blocks) for multi-line blocks when chaining other method calls to its return value.
+  - Use the `{ }` form (i.e. brace blocks) for multi-line blocks where its return value is passed to another method as an argument.
 
     ```ruby
     # good
