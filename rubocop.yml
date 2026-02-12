@@ -1,0 +1,367 @@
+AllCops:
+  DisabledByDefault: true
+  DisplayCopNames: true
+  Exclude:
+    - vendor/**/*
+    - db/**/*
+    - bin/**
+    - node_modules/**/*
+
+########################
+# Ruby version
+########################
+
+# [SHOULD] Projects using Ruby 2.0 should prefer Ruby 2.0 syntax where possible: e.g. keyword arguments, symbol array literal notation(%i).
+
+########################
+# Indentation
+########################
+
+# [MUST] Use two spaces for 1-level of indent. Do not use the horizontal tab character.
+Layout/IndentationStyle:
+  EnforcedStyle: spaces
+Layout/IndentationWidth:
+  Enabled: true
+Layout/IndentationConsistency:
+  Enabled: true
+Layout/InitialIndentation:
+  Enabled: true
+Layout/CommentIndentation:
+  Enabled: true
+
+# [MUST] When you want to pass a block in the last method call of a long method chain, you must extract the receiver of the last method call into a local variable. Afterwards, write the method call with block as a separate statement on the following line.
+
+# [SHOULD] When breaking an expression over multiple lines, you must increase the indentation level.
+
+########################
+# Whitespace
+########################
+
+# [MUST] Do not put whitespace at the end of a line.
+Layout/TrailingWhitespace:
+  Enabled: true
+
+########################
+# Empty lines
+########################
+
+# [MUST] Leave exactly one newline at the end of a file.
+Layout/TrailingEmptyLines:
+  EnforcedStyle: final_newline
+
+########################
+# Character encoding and magic comments
+########################
+
+# [MUST] Use UTF-8 as scripts' character encoding for no particular reason.
+
+# [SHOULD] Do not use magic comments on Ruby 2.0+ and UTF-8 encoding because UTF-8 is the default encoding after Ruby 2.0.
+
+# [MUST] Use the following style for magic comments when you need.
+
+########################
+# Line columns
+########################
+
+# [SHOULD] Keep lines shorter than 128 characters.
+Layout/LineLength:
+  Max: 128
+
+########################
+# Numbers
+########################
+
+# [SHOULD] Use underscores to separate every three-digits when writing long numbers.
+Style/NumericLiterals:
+  MinDigits: 7
+  Strict: true
+
+# [SHOULD] Use underscores to separate every four-digits when writing long binary and hexadecimal numbers.
+
+# [SHOULD] Do not mix uppercase and lowercase letters in hexadecimal numbers.
+
+# [SHOULD] Use `r` suffix to write fractional numbers, if you are using Ruby 2.1+
+
+# [SHOULD] Use `Integer#quo` method for writing fractional numbers, if you are using Ruby 2.0+
+
+# [SHOULD] Use `i` or `ri` suffix to write complex numbers, if you are using Ruby 2.1+
+
+########################
+# Strings
+########################
+
+# [SHOULD] Use `''` to write empty strings.
+Style/EmptyLiteral:
+  Enabled: true
+
+# [SHOULD] Do not use `String.new` method with no arguments, unless there is a valid reason.
+
+# [MUST] Use appropriate punctuation characters to minimize the number of escape sequences in string contents.
+
+# [SHOULD] Use parentheses to write strings by `%` notation.  You can use any kind of parentheses.  In the following cases you can use non-parentheses characters for punctuations.
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+# [MUST] Do not write only `Object#to_s` in string interpolation, such as `"#{obj.to_s}"`.
+Style/RedundantInterpolation:
+  Enabled: true
+
+# [SHOULD] (Ruby 1.9+) Use `\u` notation to write Unicode characters rather than writing the bytes in `\x`, e.g. `"\u{3333}"` instead of `"\xE3\x8C\xB3"`.  If you have to write a script for both Ruby 1.8 and 1.9, you may write the bytes in `\x` form.
+
+# [SHOULD] Do not write string literals in loops (e.g. `while`, `until`, `for`).
+
+# [SHOULD] Do not use `String#+` to concatenate any string objects to string literals.  Use string interpolations.
+
+# [MUST] Do not use `+=` to append string to string in a destructive manner.  Use `String#<<` or `String#concat`.
+
+########################
+# Arrays
+########################
+
+# [MUST] If you write an array literal just after an assignment operator such as `=`, obey the following form denoted as "good".
+Layout/MultilineArrayBraceLayout:
+  EnforcedStyle: symmetrical
+
+# [SHOULD] In the multi-line array literal, put `,` after the last item.
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+# [SHOULD] Use general delimited input (percent) syntax `%w(...)` or `%W(...)` for word arrays.
+Style/WordArray:
+  EnforcedStyle: percent
+
+# [MUST] Use `[]` to write empty arrays.
+# (already definied above)
+# Style/EmptyLiteral:
+#   Enabled: true
+
+# [MUST] Do not use `Array.new` without any arguments.
+
+# [SHOULD] Use `Array.new(n, obj)` to generate an array with `n` same items.  Do not use `[obj]  n` to reduce object allocation.
+
+# [SHOULD] Use `[range]` form instead of `Range#to_a` to convert range literals to arrays.
+
+########################
+# Hashes
+########################
+
+# [MUST] Put whitespaces between `{` and the first key, and between the last value and `}` when writing hash literals on a single line.
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+# [MUST] Use new hash syntax in Ruby 1.9+ (`{ foo: 42 }`) if all keys can be written in that syntax:
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+
+# [SHOULD] Use hash rocket (`{ :foo => 42 }`) for all keys if any of keys can't be written in new Hash syntax (e.g. `:'foo.bar'`, `:'foo-bar'`, `if`, `unless`)
+
+# [MUST] Use `{}` to write empty hashes.
+# (already definied above)
+# Style/EmptyLiteral:
+#   Enabled: true
+
+# [MUST] If you write a hash literal just after an assignment operator, such as `=`, obey the following form denoted as "good".
+# [SHOULD] In the multi line hash literal, put `,` after the last item.
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+# [SHOULD] If Symbol literals can be used as keys of hashes, use it for faster item lookup.
+
+# [SHOULD] (Ruby 1.9+) If all the keys of hash literals are Symbol literals, use the form of `{ key: value }`.  Put whitespace after `:`.
+Layout/SpaceAfterColon:
+  Enabled: true
+
+########################
+# Operations
+########################
+
+# [SHOULD] Put whitespace around operators, except for `**`.
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+# [MUST] Do not use `and`, `or`, and `not`.
+Style/AndOr:
+  Enabled: true
+
+# [MUST] Do not nest conditional operators.
+Style/NestedTernaryOperator:
+  Enabled: true
+
+# [MUST] Do not write conditional operators over multiple lines.
+Style/MultilineTernaryOperator:
+  Enabled: true
+
+########################
+# Assignments
+########################
+
+# [MUST] Parallel assignments can only be used for assigning literal values or results of methods without arguments, and for exchanging two variables or attributes.
+Style/ParallelAssignment:
+  Enabled: true
+
+# [MUST] Put whitespace around assignment operators.
+
+# [MUST] Do not write assignment expressions in conditional clauses.
+Lint/AssignmentInCondition:
+  Enabled: true
+  AllowSafeAssignment: false
+
+########################
+# Control structures
+########################
+
+# [SHOULD] Use `unless condition`, instead of `if !condition`.
+Style/NegatedIf:
+  Enabled: true
+
+# [SHOULD] Use `until condition`, instead of `while !condition`.
+Style/NegatedWhile:
+  Enabled: true
+
+# [SHOULD] Do not use `else` for `unless`.
+Style/UnlessElse:
+  Enabled: true
+
+# [MUST] Put a line break just after the condition clause of `if`, `unless`, and `case`.  Do not follow a body code.
+
+# [MUST] Do not use `then` and `:` for the condition clause of `if`, `unless`, and `case`.
+Style/WhenThen:
+  Enabled: true
+
+# [MUST] Put a line break just after the condition clause of `while` and `until`.  Do not follow a body code.
+
+# [MUST] Do not use `do` and `:` for the condition clause of `while` and `until`.
+Style/WhileUntilDo:
+  Enabled: true
+
+# [SHOULD] Do not write a logical expressions combined by `||` in the condition clause of `unless` and `until`.
+# [SHOULD] Use modifier forms, if conditions and bodies are short.
+Style/WhileUntilModifier:
+  Enabled: true
+
+# [SHOULD] Extract conditions as predicator methods with appropriate names if the conditions are long or multiple line.
+
+# [MUST] If you write a control structure just after an assignment operator such as `=`, obey the following form denoted as "good".
+
+# [MUST] Do not put any meaningless expressions after return, next, or break.
+
+########################
+# Method calls
+########################
+
+# [MUST] Do not omit parentheses of method calls except for the following permitted cases.
+# Style/MethodCallWithoutArgsParentheses:
+#   Enabled: true
+
+# [MUST] You must omit parentheses for method calls without any arguments.
+# Style/MethodCallWithArgsParentheses:
+#   Enabled: true
+
+# [MUST] For DSL-like methods (as in the examples below), you may omit parentheses when calling them.  However, you should not omit parentheses for the case where the first argument is enclosed in parentheses, because this case generates syntax warning.
+
+# [MUST] Do not put whitespace between a method name and parenthesis.
+
+# [SHOULD] Due to separation of keyword and positional arguments in Ruby 3.0, distinguish between using keyword arguments and using a hash in method calls.
+
+# [MUST] Use brace blocks `{ }` for a method call written in one line.
+
+# [MUST] Use brace blocks `{ }` for multi-line blocks when chaining other method calls to itself.
+
+# Style/BlockDelimiters:
+#   EnforcedStyle: braces_for_chaining
+
+# [MUST] Obey the following "good" form in `do`/`end` form of blocks.
+
+# [MUST] Put a whitespace before `{` of brace blocks.
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyle: space
+
+# [MUST] For a brace block written in one line, put whitespace between `{`, `}` and the inner contents.
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+
+# [SHOULD] On a method call with long parameters, write these arguments over multiple lines according to the following regulations.
+
+########################
+# BEGIN AND END
+########################
+
+# [MUST] Do not use `BEGIN` and `END` blocks.
+Style/BeginBlock:
+  Enabled: true
+Style/EndBlock:
+  Enabled: true
+
+########################
+# Module and Class definitions
+########################
+
+# [MUST] Use `alias_method` instead of `alias` to define aliases of methods.
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+# [MUST] use `attr_accessor`, `attr_reader`, and `attr_writer` to define accessors instead of `attr`.
+Style/Attr:
+  Enabled: true
+
+# [MUST] In definitions of class methods, use `self.` prefix of method name to reduce the indentation level. However, it is fine to use `class << self` when you want to define both public and private class methods.
+Style/ClassMethods:
+  Enabled: true
+
+# [MUST] In definitions of private or protected class methods, define these methods and change their visibilities in `class << self`/`end`.
+
+# [MUST] If you use `private`, `protected`, and `public` with method name to change the visibilities of methods after definitions of the methods, do not put empty line between the definition of the method and these visibility-change methods.
+
+# [MUST] If you use `private`, `protected`, and `public` without any arguments, align the lines of these method calls to their associated method definition. Put empty lines around the visibility-change methods.
+Style/TrailingBodyOnMethodDefinition:
+  Enabled: true
+
+# [SHOULD] Use Markdown format to write documentation comments for public interfaces of modules and/or classes.
+
+# [SHOULD] Follow [YARD](http://yardoc.org/) style to write documentation comments.
+
+# [MUST] Do not put empty lines between documentation comments and the corresponding method definitions.
+
+# [MUST] Do not give different responsibilities to a class.
+
+########################
+# Method definitions
+########################
+
+# [MUST] On method definition, do not omit parentheses of parameter list, except for methods without parameters.
+Style/MethodDefParentheses:
+  Enabled: true
+
+# [MUST] Do not put whitespace between method name and the parameter list.
+Layout/SpaceAfterMethodName:
+  Enabled: true
+
+# [SHOULD] Do not write codes that is not understandable without any comment.
+
+# [MUST] Do not give different responsibilities to a method.
+
+# [MUST] Do not destructively modify arguments (i.e. cause side-effects).
+
+########################
+# Variables
+########################
+
+# [MUST] Do not introduce new global variables (`$foo`) for any reason.
+Style/GlobalVars:
+  Enabled: true
+
+# [MUST] Do not use class variables (`@@foo`) for any reasons.  Use `class_attribute` instead.
+Style/ClassVars:
+  Enabled: true
+
+# [MUST] Name variables with valid English words without shortening.  If a variable name gets too long, you can shorten the variable name by removing vowels, except for the first character. Alternatively, you choose well-known abbreviations.  Additionally, you can use conventional variables such as `i` and `j` for loop counters.
+
+# [SHOULD] Do not use a single variable for different purposes.
+
+# [SHOULD] Minimize the scope of a local variable.  Methods without any local variables are preferred.
+
+########################
+# Miscellaneous
+########################
+
+# [MUST] Keep the side effects of destructive methods to a minimum.
